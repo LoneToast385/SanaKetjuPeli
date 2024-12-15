@@ -15,6 +15,12 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
 
+// api
+const reitinLöytäminen = require('./routes/reitti')
+
+app.use('/api/reitti', reitinLöytäminen);
+
+
 app.listen(PORT, () => {
     console.log(`Running on Port ${PORT}`)
 });
