@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
     // Lähetetään sivun pohjana toimiva html tiedosto
-    res.sendFile(path.join(__dirname, '../frontend/html/index.html'));
+    res.sendFile(path.join(__dirname, '../public/html/index.html'));
 });
 
 app.listen(PORT, () => {
