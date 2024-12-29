@@ -15,7 +15,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
     }
     
     // Tähän se reitinlöytöalgoritmi
-    res.send('success')
+    res.send({msg: 'success'})
 
 })
 

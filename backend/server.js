@@ -10,16 +10,16 @@ const app = express();
 // Määritetään portti, jossa serveri pyörii
 const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    // Lähetetään sivun pohjana toimiva html tiedosto
-    res.sendFile(path.join(__dirname, '../public/html/index.html'));
-});
-
 // api
 const reitinLöytäminen = require('./routes/reitti')
 
 app.use('/api/reitti', reitinLöytäminen);
+app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+    // Lähetetään sivun pohjana toimiva html tiedosto
+    res.sendFile(path.join(__dirname, '../public/html/index.html'));
+});
 
 app.listen(PORT, () => {
     console.log(`Running on Port ${PORT}`)
