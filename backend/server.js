@@ -11,9 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // api
-const reitinLöytäminen = require('./routes/reitti')
+const sanatJaNiidenLogiikkaa = require('./routes/sanat')
 
-app.use('/api/reitti', reitinLöytäminen);
+app.use('/api/sanat', sanatJaNiidenLogiikkaa);
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
