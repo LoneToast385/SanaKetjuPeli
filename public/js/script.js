@@ -93,10 +93,12 @@ document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
 
   if (pressedKey === "Enter" && moneskoRivi < TASO) {
+    if (moneskoRivi + 2 < TASO) {
     moneskoRivi++;
     moneskoRuutu = 0;
     currentGuess = [];
     highlightCurrentBox(); // Update highlight
+    }
     return;
   }
 
