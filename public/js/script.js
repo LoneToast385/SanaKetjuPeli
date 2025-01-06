@@ -48,68 +48,17 @@ function highlightCurrentBox() {
   }
 }
 
+
 function deleteLetter() {
-  // Get the current row
-  let row = document.getElementsByClassName("letter-row")[moneskoRivi];
-
-  if (!row) {
-    console.error("No row found!");
-    return; // Exit if the row does not exist.
-  }
-
-  if (moneskoRuutu === 5) {
-    // If on the last box (Box 4)
-    let box = row.children[4]; // The last box
-    if (!box) {
-      console.error("No box found in the last position!");
-      return; // Exit if the box does not exist.
-    }
-
-    if (box.textContent !== "") {
-      box.textContent = "";
-      box.classList.remove("filled-box");
-      currentGuess.pop();
-    } else {
-      moneskoRuutu -= 1;
-    }
-  } else if (moneskoRuutu > 0) {
-    // If not on the last box, move to the previous box
+  if (moneskoRuutu > 0) {
+    let row = document.getElementsByClassName("letter-row")[moneskoRivi];
+    let box = row.children[moneskoRuutu - 1];
+    box.textContent = "";
+    box.classList.remove("filled-box");
+    currentGuess.pop();
     moneskoRuutu -= 1;
   }
-
-  // Handle deleting the content of the current box
-  let box = row.children[moneskoRuutu];
-  if (!box) {
-    console.error("No box found for deletion at position", moneskoRuutu);
-    return; // Exit if the box does not exist.
-  }
-
-  box.textContent = "";
-  box.classList.remove("filled-box");
-  currentGuess.pop();
 }
-  // Determine the target box
-  let box = row.children[moneskoRuutu - 1]; // Target the previous box by default
-
-  if (box.textContent === "") {
-    // If the current box is empty, move back to the previous box
-    moneskoRuutu -= 1;
-    box = row.children[moneskoRuutu - 1];
-  }
-
-  // Clear the content of the determined box
-  box.textContent = "";
-  box.classList.remove("filled-box");
-
-  // Update the guess array
-  currentGuess.pop();
-
-  // Move back one box
-  moneskoRuutu = Math.max(0, moneskoRuutu - 1);
-}
-
-
-
 
 function insertLetter(pressedKey) {
   if (moneskoRuutu < 5) {
@@ -118,9 +67,7 @@ function insertLetter(pressedKey) {
     box.textContent = pressedKey;
     box.classList.add("filled-box");
     currentGuess.push(pressedKey);
-    if (moneskoRuutu <  4){
-        moneskoRuutu += 1;
-    }
+    moneskoRuutu += 1;
   }
 }
 
@@ -146,12 +93,10 @@ document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
 
   if (pressedKey === "Enter" && moneskoRivi < TASO) {
-    if (moneskoRivi + 2 < TASO) {
     moneskoRivi++;
     moneskoRuutu = 0;
     currentGuess = [];
     highlightCurrentBox(); // Update highlight
-    }
     return;
   }
 
@@ -160,6 +105,7 @@ document.addEventListener("keyup", (e) => {
     if (moneskoRivi + 2 < TASO) { // Prevent moving below the last row
       moneskoRivi++;
       highlightCurrentBox();
+         
     }
     return;
   }
@@ -174,7 +120,8 @@ document.addEventListener("keyup", (e) => {
   // Restrict horizontal movement
   if (pressedKey === "ArrowRight") {
     if (moneskoRuutu + 1 < 5) { // Prevent moving beyond the last column
-      moneskoRuutu++;
+      if (moneskoRuutu <  4)
+          moneskoRuutu += 1;     
       highlightCurrentBox();
     }
     return;
@@ -193,7 +140,6 @@ document.addEventListener("keyup", (e) => {
     highlightCurrentBox();
     return;
   }
-
 
   // Only allow valid letters to be entered
   let found = pressedKey.match(/[a-ä]/gi);
