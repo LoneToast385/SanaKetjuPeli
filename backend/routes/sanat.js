@@ -110,7 +110,7 @@ function LäheisetSanat(aloitussana, lopetussana, D, min, max) {
             }
         }
     }
-    if (filtteroidut_sanat || filtteroidut_sanat.length == 0) return {msg: "mitään ei löytynyt"};
+    if (!filtteroidut_sanat || filtteroidut_sanat.length == 0) return {msg: "mitään ei löytynyt"};
     return filtteroidut_sanat;
 }
 router.get('/:aloitussana/:lopetussana', (req, res) => {
