@@ -49,10 +49,11 @@ function highlightCurrentBox() {
 }
 
 function deleteLetter() {
+  // Get the current row
   let row = document.getElementsByClassName("letter-row")[moneskoRivi];
 
-  // If on the last box (Box 4)
   if (moneskoRuutu === 5) {
+    // If on the last box (Box 4)
     let box = row.children[4]; // The last box
     if (box.textContent !== "") {
       // If the last box is not empty, clear it and stay on it
@@ -61,11 +62,11 @@ function deleteLetter() {
       currentGuess.pop();
       return;
     } else {
-      // If the last box is empty, move to the previous box and delete its content
+      // If the last box is empty, move to the previous box
       moneskoRuutu -= 1;
     }
   } else if (moneskoRuutu > 0) {
-    // If not on the last box, move back and delete the previous box's content
+    // If not on the last box, move to the previous box
     moneskoRuutu -= 1;
   }
 
@@ -75,6 +76,7 @@ function deleteLetter() {
   box.classList.remove("filled-box");
   currentGuess.pop();
 }
+
 
 
   // Determine the target box
