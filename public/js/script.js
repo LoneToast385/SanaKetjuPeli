@@ -48,32 +48,34 @@ function highlightCurrentBox() {
   }
 }
 
-
 function deleteLetter() {
-    let row = document.getElementsByClassName("letter-row")[moneskoRivi];
-    let box = row.children[moneskoRuutu - 1];
-  if (moneskoRuutu < 4) {
-    box = row.children[moneskoRuutu - 1];
-    box.textContent = "";
-    box.classList.remove("filled-box");
-    currentGuess.pop();
-    moneskoRuutu -= 1;
-  } else if (moneskoRuutu = 4 && box.textContent != "")
-  {
-    box = row.children[moneskoRuutu];
-    box.textContent = "";
-    box.classList.remove("filled-box");
-    currentGuess.pop();
-    moneskoRuutu -= 1;
-  } else {
-    box = row.children[moneskoRuutu - 1];
-    box.textContent = "";
-    box.classList.remove("filled-box");
-    currentGuess.pop();
-    moneskoRuutu -= 1;
-  }
+  // Get the current row
+  let row = document.getElementsByClassName("letter-row")[moneskoRivi];
+  
+  // Check if the current box is empty
+  if (moneskoRuutu > 0) {
+    let box = row.children[moneskoRuutu - 1]; // Current box (or previous if moving back)
     
+    // If the current box is empty, move to the previous box
+    if (box.textContent === "" && moneskoRuutu > 1) {
+      moneskoRuutu -= 1;
+      box = row.children[moneskoRuutu - 1]; // Update to the previous box
+    }
+
+    // Delete the content of the determined box
+    box.textContent = "";
+    box.classList.remove("filled-box");
+
+    // Update the guess array
+    currentGuess.pop();
+  } else if (moneskoRuutu === 0 && row.children[0].textContent !== "") {
+    // Special case for the first box
+    row.children[0].textContent = "";
+    row.children[0].classList.remove("filled-box");
+    currentGuess.pop();
+  }
 }
+
 
 function insertLetter(pressedKey) {
   if (moneskoRuutu < 5) {
