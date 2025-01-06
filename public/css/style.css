@@ -73,3 +73,9 @@ h1 {
   cursor: pointer;
   text-transform: uppercase;
 }
+
+.selected-box {
+  border: 2px solid #FFD700; /* Gold border or any color you prefer */
+  background-color: #FFFACD; /* Light yellow background */
+}
+
