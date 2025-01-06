@@ -15,8 +15,5 @@
       "src": "/(.*)",
       "dest": "backend/server.js"
     } 
-  ],
-  "files": [
-    "backend/routes/sanat.json"
   ]
 }
