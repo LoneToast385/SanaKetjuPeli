@@ -58,51 +58,27 @@ function deleteLetter() {
   moneskoRuutu -= 1;
 }
 
-function checkGuess() {
-  let row = document.getElementsByClassName("letter-row")[moneskoRivi];
-  let guessString = "";
-  let rightGuess = Array.from(lopetussana);
-
-  for (const val of currentGuess) {
-    guessString += val;
-  }
-
-  if (guessString.length != 5) {
-    toastr.error("Not enough letters!");
-    return;
-  }
-
-  if (!WORDS.includes(guessString)) {
-    toastr.error("Word not in list!");
-    return;
-  }
-
-  for (let i = 0; i < 5; i++) {
-    let box = row.children[i];
-    let delay = 250 * i;
-    setTimeout(() => {
-      //flip box
-      animateCSS(box, "flipInX");
-      //shade box
-      box.style.backgroundColor = letterColor[i];
-      shadeKeyBoard(guessString.charAt(i) + "", letterColor[i]);
-    }, delay);
-  }
-
-  if (guessString === lopetussana) {
-    toastr.success("You guessed right! Game over!");
-    moneskoRivi = 4;
-    return;
-  } else {
-    moneskoRivi += 1;
-    currentGuess = [];
-    moneskoRuutu = 0;
-
-    if (moneskoRivi === 4) {
-      toastr.error("You've run out of guesses! Game over!");
-      toastr.info(`The right word was: "${lopetussana}"`);
+bool areGuessesLegal() {
+    let guesses = new set();  //Muodostetaan sanoja ja asetetaan ne settiin jotta voidaan verrata yhtä toiseen.
+    for(let i = 0; i <= TASO.length; i++) { 
+        let tempWord = "";
+        if(tempWord <= 5) 
+            tempWord.concat(guesses.add(document.getElementsByClassName("letter-box animate__animated")[i].innerHTML));
+        else {
+            guesses.add(tempWord);
+            tempWord = "";
+        }
     }
-  }
+    // Setit muodostettu, verrtaan sanoja...
+    for(let i; i <= guesses.length - 1; i++) {
+        let changedLetters = 0;
+        for(let n; n <= guesses[0].length; n++)  {
+            if(guesses[i][n] != guesses[i + 1][n])
+                changedLetters += 1;
+        if(changedLetters > 1)
+            return false;
+    }
+    return true;
 }
 
 function insertLetter(pressedKey) {
@@ -119,26 +95,6 @@ function insertLetter(pressedKey) {
   currentGuess.push(pressedKey);
   moneskoRuutu += 1;
 }
-
-const animateCSS = (element, animation, prefix = "animate__") =>
-  // We create a Promise and return it
-  new Promise((resolve, reject) => {
-    const animationName = `${prefix}${animation}`;
-    // const node = document.querySelector(element);
-    const node = element;
-    node.style.setProperty("--animate-duration", "0.3s");
-
-    node.classList.add(`${prefix}animated`, animationName);
-
-    // When the animation ends, we clean the classes and resolve the Promise
-    function handleAnimationEnd(event) {
-      event.stopPropagation();
-      node.classList.remove(`${prefix}animated`, animationName);
-      resolve("Animation ended");
-    }
-
-    node.addEventListener("animationend", handleAnimationEnd, { once: true });
-  });
 
 document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
@@ -166,7 +122,6 @@ document.addEventListener("keyup", (e) => {
   }
 
   if (pressedKey === "Enter") {
-    checkGuess();
     if (moneskoRivi < TASO) { // Only move down if not at the last row
       moneskoRivi += 1; // Move down to the next row after the guess check
     }
