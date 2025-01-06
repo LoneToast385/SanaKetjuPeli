@@ -140,26 +140,24 @@ const animateCSS = (element, animation, prefix = "animate__") =>
     node.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
 
-
-
 document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
 
-  if (pressedKey === "ArrowDown" && moneskoRivi != TASO) {
+  if (pressedKey === "ArrowDown" && moneskoRivi < TASO) {
     moneskoRivi += 1;
   }
-  if (pressedKey === "ArrowUp" && moneskoRivi != 0) {
+  if (pressedKey === "ArrowUp" && moneskoRivi > 0) {
     moneskoRivi -= 1;
   }
-  if (pressedKey === "ArrowLeft" && moneskoRuutu != 0) {
+  if (pressedKey === "ArrowLeft" && moneskoRuutu > 0) {
       moneskoRuutu -= 1;
   }
-    if (pressedKey === "ArrowRight" && moneskoRuutu != 5) {
+  if (pressedKey === "ArrowRight" && moneskoRuutu < 5) {
       moneskoRuutu += 1;
   }
 
   if (moneskoRivi === 5) {
-    return;
+    return; // Do nothing if we're at the last row.
   }
 
   if (pressedKey === "Backspace" && moneskoRuutu !== 0) {
@@ -169,6 +167,9 @@ document.addEventListener("keyup", (e) => {
 
   if (pressedKey === "Enter") {
     checkGuess();
+    if (moneskoRivi < TASO) { // Only move down if not at the last row
+      moneskoRivi += 1; // Move down to the next row after the guess check
+    }
     return;
   }
 
