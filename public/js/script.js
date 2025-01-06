@@ -92,7 +92,7 @@ function areGuessesLegal() {
 document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
 
-  if (pressedKey === "Enter" && moneskoRivi < TASO) {
+  if (pressedKey === "Enter" && moneskoRivi < TASO + 2) {
     moneskoRivi++;
     moneskoRuutu = 0;
     currentGuess = [];
