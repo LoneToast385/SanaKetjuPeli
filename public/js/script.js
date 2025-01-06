@@ -52,23 +52,38 @@ function deleteLetter() {
   // Get the current row
   let row = document.getElementsByClassName("letter-row")[moneskoRivi];
 
-  // If the current box is empty, move back to the previous box (if possible)
-  if (moneskoRuutu > 0) {
-    let box = row.children[moneskoRuutu - 1]; // Target the current box
-
-    if (box.textContent === "") {
-      moneskoRuutu -= 1; // Move back
-      box = row.children[moneskoRuutu]; // Update to the previous box
+  // Check if we're at the first box and prevent moving further back
+  if (moneskoRuutu === 0) {
+    let box = row.children[0];
+    if (box.textContent !== "") {
+      // Clear the content of the first box if it has text
+      box.textContent = "";
+      box.classList.remove("filled-box");
+      currentGuess.pop();
     }
-
-    // Delete the content of the determined box
-    box.textContent = "";
-    box.classList.remove("filled-box");
-
-    // Update the guess array
-    currentGuess.pop();
+    return;
   }
+
+  // Determine the target box
+  let box = row.children[moneskoRuutu - 1]; // Target the previous box by default
+
+  if (box.textContent === "") {
+    // If the current box is empty, move back to the previous box
+    moneskoRuutu -= 1;
+    box = row.children[moneskoRuutu - 1];
+  }
+
+  // Clear the content of the determined box
+  box.textContent = "";
+  box.classList.remove("filled-box");
+
+  // Update the guess array
+  currentGuess.pop();
+
+  // Move back one box
+  moneskoRuutu = Math.max(0, moneskoRuutu - 1);
 }
+
 
 
 
