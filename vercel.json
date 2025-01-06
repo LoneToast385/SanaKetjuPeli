@@ -18,8 +18,8 @@
   ],
   "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/routes/"
+      "source": "/api/(.*)",
+      "destination": "backend/routes/"
     }
   ]
 }
