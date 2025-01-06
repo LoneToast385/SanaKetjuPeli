@@ -35,6 +35,20 @@ function initBoard() {
   }
 }
 
+function highlightCurrentBox() {
+  // Remove highlight from all boxes
+  const allBoxes = document.querySelectorAll(".letter-box");
+  allBoxes.forEach((box) => box.classList.remove("selected-box"));
+
+  // Highlight the current box
+  if (moneskoRivi < TASO) {
+    const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
+    const currentBox = currentRow.children[moneskoRuutu];
+    currentBox.classList.add("selected-box");
+  }
+}
+
+
 function deleteLetter() {
   if (moneskoRuutu > 0) {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
@@ -82,18 +96,39 @@ document.addEventListener("keyup", (e) => {
     moneskoRivi++;
     moneskoRuutu = 0;
     currentGuess = [];
+    highlightCurrentBox(); // Update highlight
     return;
   }
 
-  if (pressedKey === "ArrowDown" && moneskoRivi < TASO) moneskoRivi++;
-  if (pressedKey === "ArrowUp" && moneskoRivi > 0) moneskoRivi--;
-  if (pressedKey === "ArrowLeft" && moneskoRuutu > 0) moneskoRuutu--;
-  if (pressedKey === "ArrowRight" && moneskoRuutu < 5) moneskoRuutu++;
-  if (pressedKey === "Backspace") deleteLetter();
+  if (pressedKey === "ArrowDown" && moneskoRivi < TASO) {
+    moneskoRivi++;
+    highlightCurrentBox();
+  }
+  if (pressedKey === "ArrowUp" && moneskoRivi > 0) {
+    moneskoRivi--;
+    highlightCurrentBox();
+  }
+  if (pressedKey === "ArrowLeft" && moneskoRuutu > 0) {
+    moneskoRuutu--;
+    highlightCurrentBox();
+  }
+  if (pressedKey === "ArrowRight" && moneskoRuutu < 5) {
+    moneskoRuutu++;
+    highlightCurrentBox();
+  }
+  if (pressedKey === "Backspace") {
+    deleteLetter();
+    highlightCurrentBox();
+    return;
+  }
 
   let found = pressedKey.match(/[a-ä]/gi);
-  if (found && found.length === 1) insertLetter(pressedKey.toLowerCase());
+  if (found && found.length === 1) {
+    insertLetter(pressedKey.toLowerCase());
+    highlightCurrentBox();
+  }
 });
+
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   const target = e.target;
