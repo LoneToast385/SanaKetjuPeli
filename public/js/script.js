@@ -61,15 +61,29 @@ function deleteLetter() {
 }
 
 function insertLetter(pressedKey) {
-  if (moneskoRuutu < 5) {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu];
-    box.textContent = pressedKey;
-    box.classList.add("filled-box");
-    currentGuess.push(pressedKey);
-    if (moneskoRuutu != 4)
-        moneskoRuutu += 1;
-  }
+    if (moneskoRuutu == 4 && box.textContent != "") {
+        row = document.getElementsByClassName("letter-row")[moneskoRivi];
+        box = row.children[moneskoRuutu];
+        box.textContent = "";
+        box.classList.remove("filled-box");
+        currentGuess.pop();
+    } else if (moneskoRuutu == 4 && box.textContent == "") {
+        row = document.getElementsByClassName("letter-row")[moneskoRivi];
+        box = row.children[moneskoRuutu - 1];
+        box.textContent = "";
+        box.classList.remove("filled-box");
+        currentGuess.pop();
+        moneskoRuutu -= 1;
+    } else if (moneskoRuutu > 0) {
+        row = document.getElementsByClassName("letter-row")[moneskoRivi];
+        box = row.children[moneskoRuutu - 1];
+        box.textContent = "";
+        box.classList.remove("filled-box");
+        currentGuess.pop();
+        moneskoRuutu -= 1;
+    }
 }
 
 function areGuessesLegal() {
