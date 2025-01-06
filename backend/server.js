@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // api
-const sanatJaNiidenLogiikkaa = require('/backend/routes/sanat');
+const sanatJaNiidenLogiikkaa = require('/routes/sanat');
 
 app.use('/api/sanat', sanatJaNiidenLogiikkaa);
 app.use(express.static(path.join(__dirname, '../public')));
