@@ -1,4 +1,4 @@
-import { WORDS } from "./words.js";
+import { WORDS } from "/js/words.js";
 
 const TASO = 5;
 let moneskoRivi = 0;
