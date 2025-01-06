@@ -49,20 +49,33 @@ function highlightCurrentBox() {
 }
 
 function deleteLetter() {
-  // Get the current row
   let row = document.getElementsByClassName("letter-row")[moneskoRivi];
 
-  // Check if we're at the first box and prevent moving further back
-  if (moneskoRuutu === 0) {
-    let box = row.children[0];
+  // If on the last box (Box 4)
+  if (moneskoRuutu === 5) {
+    let box = row.children[4]; // The last box
     if (box.textContent !== "") {
-      // Clear the content of the first box if it has text
+      // If the last box is not empty, clear it and stay on it
       box.textContent = "";
       box.classList.remove("filled-box");
       currentGuess.pop();
+      return;
+    } else {
+      // If the last box is empty, move to the previous box and delete its content
+      moneskoRuutu -= 1;
     }
-    return;
+  } else if (moneskoRuutu > 0) {
+    // If not on the last box, move back and delete the previous box's content
+    moneskoRuutu -= 1;
   }
+
+  // Handle deleting the content of the current box
+  let box = row.children[moneskoRuutu];
+  box.textContent = "";
+  box.classList.remove("filled-box");
+  currentGuess.pop();
+}
+
 
   // Determine the target box
   let box = row.children[moneskoRuutu - 1]; // Target the previous box by default
