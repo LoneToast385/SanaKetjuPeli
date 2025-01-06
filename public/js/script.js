@@ -100,6 +100,16 @@ function insertLetter(pressedKey) {
 document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
 
+  // Move down to the next row if possible
+  if (pressedKey === "Enter") {
+    if (moneskoRivi < TASO) { // Only move down if not at the last row
+      moneskoRivi += 1;
+      moneskoRuutu = 0; // Reset column position for the new row
+    }
+    return;
+  }
+
+  // Move up, down, left, or right
   if (pressedKey === "ArrowDown" && moneskoRivi < TASO) {
     moneskoRivi += 1;
   }
@@ -107,35 +117,27 @@ document.addEventListener("keyup", (e) => {
     moneskoRivi -= 1;
   }
   if (pressedKey === "ArrowLeft" && moneskoRuutu > 0) {
-      moneskoRuutu -= 1;
+    moneskoRuutu -= 1;
   }
   if (pressedKey === "ArrowRight" && moneskoRuutu < 5) {
-      moneskoRuutu += 1;
+    moneskoRuutu += 1;
   }
 
-  if (moneskoRivi === 5) {
-    return; // Do nothing if we're at the last row.
-  }
-
-  if (pressedKey === "Backspace" && moneskoRuutu !== 0) {
+  // Handle backspace for deleting letters
+  if (pressedKey === "Backspace" && moneskoRuutu > 0) {
     deleteLetter();
     return;
   }
 
-  if (pressedKey === "Enter") {
-    if (moneskoRivi < TASO) { // Only move down if not at the last row
-      moneskoRivi += 1; // Move down to the next row after the guess check
-    }
-    return;
-  }
-
+  // Only allow valid letters to be entered
   let found = pressedKey.match(/[a-ä]/gi);
   if (!found || found.length > 1) {
     return;
   } else {
-    insertLetter(pressedKey);
+    insertLetter(pressedKey); // Insert the letter if valid
   }
 });
+
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   const target = e.target;
