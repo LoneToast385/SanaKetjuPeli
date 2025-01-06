@@ -67,8 +67,9 @@ function insertLetter(pressedKey) {
     box.textContent = pressedKey;
     box.classList.add("filled-box");
     currentGuess.push(pressedKey);
-    if (moneskoRuutu <  5)
+    if (moneskoRuutu <  4){
         moneskoRuutu += 1;
+    }
   }
 }
 
