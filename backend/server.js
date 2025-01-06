@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 const sanatJaNiidenLogiikkaa = require('./routes/sanat');
 
 app.use('/api/sanat', sanatJaNiidenLogiikkaa);
-app.use(app.use(exp.static(path.join(__dirname, '../public'))));
+app.use(app.use(express.static(path.join(__dirname, '../public'))));
 
 app.get('/', (req, res) => {
     // Lähetetään sivun pohjana toimiva html tiedosto
