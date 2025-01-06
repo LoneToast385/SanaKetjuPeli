@@ -100,34 +100,53 @@ document.addEventListener("keyup", (e) => {
     return;
   }
 
-  if (pressedKey === "ArrowDown" && moneskoRivi < TASO) {
-    moneskoRivi++;
-    highlightCurrentBox();
+  // Restrict vertical movement
+  if (pressedKey === "ArrowDown") {
+    if (moneskoRivi + 1 < TASO) { // Prevent moving below the last row
+      moneskoRivi++;
+      highlightCurrentBox();
+    }
+    return;
   }
-  if (pressedKey === "ArrowUp" && moneskoRivi > 0) {
-    moneskoRivi--;
-    highlightCurrentBox();
+  if (pressedKey === "ArrowUp") {
+    if (moneskoRivi > 0) { // Prevent moving above the first row
+      moneskoRivi--;
+      highlightCurrentBox();
+    }
+    return;
   }
-  if (pressedKey === "ArrowLeft" && moneskoRuutu > 0) {
-    moneskoRuutu--;
-    highlightCurrentBox();
+
+  // Restrict horizontal movement
+  if (pressedKey === "ArrowRight") {
+    if (moneskoRuutu + 1 < 5) { // Prevent moving beyond the last column
+      moneskoRuutu++;
+      highlightCurrentBox();
+    }
+    return;
   }
-  if (pressedKey === "ArrowRight" && moneskoRuutu < 5) {
-    moneskoRuutu++;
-    highlightCurrentBox();
+  if (pressedKey === "ArrowLeft") {
+    if (moneskoRuutu > 0) { // Prevent moving before the first column
+      moneskoRuutu--;
+      highlightCurrentBox();
+    }
+    return;
   }
-  if (pressedKey === "Backspace") {
+
+  // Handle backspace for deleting letters
+  if (pressedKey === "Backspace" && moneskoRuutu > 0) {
     deleteLetter();
     highlightCurrentBox();
     return;
   }
 
+  // Only allow valid letters to be entered
   let found = pressedKey.match(/[a-ä]/gi);
   if (found && found.length === 1) {
     insertLetter(pressedKey.toLowerCase());
     highlightCurrentBox();
   }
 });
+
 
 
 document.getElementById("keyboard-cont").addEventListener("click", (e) => {
@@ -139,4 +158,5 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 
 // Initialize the board and load words
 initBoard();
+highlightCurrentBox();
 loadWords();
