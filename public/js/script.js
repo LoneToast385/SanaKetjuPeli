@@ -1,4 +1,4 @@
-import { WORDS } from "/js/words.js";
+import { WORDS } from "/api/sanat";
 
 const TASO = 5;
 let moneskoRivi = 0;
