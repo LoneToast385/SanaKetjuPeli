@@ -11,13 +11,10 @@
     }
   ],
   "routes": [
+    { "handle": "filesystem" },
     {
       "src": "/(.*)",
       "dest": "backend/server.js"
-    },
-    {
-      "src": "/api/sanat/(.*)",
-      "dest": "backend/routes/sanat.js"
     }
   ]
 }
