@@ -34,8 +34,8 @@ function initBoard() {
 
       // Add click event listener for mouse navigation
       box.addEventListener('click', () => {
-        moneskoRivi = i;
-        moneskoRuutu = j;
+        moneskoRivi = i; // Set the clicked row index
+        moneskoRuutu = j; // Set the clicked column index
         highlightCurrentBox(); // Highlight the selected box
       });
     }
@@ -53,6 +53,7 @@ function highlightCurrentBox() {
   const currentBox = currentRow.children[moneskoRuutu];
   currentBox.classList.add("selected-box");
 }
+
 
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
