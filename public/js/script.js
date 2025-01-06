@@ -31,6 +31,13 @@ function initBoard() {
       box.className = i === 0 || i === TASO ? "intebox" : "letter-box";
       box.textContent = i === 0 ? aloitussana[j] : i === TASO ? lopetussana[j] : "";
       row.appendChild(box);
+
+      // Add click event listener for mouse navigation
+      box.addEventListener('click', () => {
+        moneskoRivi = i;
+        moneskoRuutu = j;
+        highlightCurrentBox(); // Highlight the selected box
+      });
     }
     board.appendChild(row);
   }
@@ -42,13 +49,10 @@ function highlightCurrentBox() {
   allBoxes.forEach((box) => box.classList.remove("selected-box"));
 
   // Highlight the current box
-  if (moneskoRivi < TASO) {
-    const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
-    const currentBox = currentRow.children[moneskoRuutu];
-    currentBox.classList.add("selected-box");
-  }
+  const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
+  const currentBox = currentRow.children[moneskoRuutu];
+  currentBox.classList.add("selected-box");
 }
-
 
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
