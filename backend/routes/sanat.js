@@ -17,33 +17,66 @@ function getConfig(file){
     return readJsonFileSync(filepath);
 }
 
-function LäheisetSanat(aloitussana, D, min, max) {
+function ListaReitistä(reitit, lopetussana) {
+    reitti = []
+    
+    nykyinen = lopetussana
+    reitti.push(nykyinen)
 
-    const filtteroidut_sanat = {}
+    while (reitit[nykyinen]) { 
+        nykyinen = reitit[nykyinen]
+        reitti.push(nykyinen)
+        
+    }
+    reitti.reverse()
+    console.log(reitti)
+    return reitti
+}
 
-    if (!(aloitussana in D)) return filtteroidut_sanat;
+function LäheisetSanat(aloitussana, lopetussana, D, min, max) {
+
+    console.log(aloitussana, lopetussana, min, max)
+
+    let filtteroidut_sanat = {}
+    const reitit = {}
+
+    if (!(aloitussana in D)) return {msg: "aloitussana ei löydy sanalistassa. HUOM! kaikki sanat ovat viiden kirjaimen pituisia."};
+
+    if (lopetussana) {
+        if (!(lopetussana in D)) return {msg: "lopetussana määriteltiin, mutta se ei löytynyt sanalistasta"};
+        reitit[aloitussana] = NaN;
+    }
+
+    if (aloitussana == lopetussana) return {msg: "aloitussana = lopetussana"};
  
     let level = 0, wordlength = aloitussana.length;
  
     let Q = [];
     Q.push(aloitussana);
+
+    delete D[aloitussana]
  
     while (Q.length != 0) {
  
         ++level;
-        if (min <= level && level <= max) {
-            filtteroidut_sanat[level] = [];
+
+        if (!lopetussana) {
+            if (min <= level && level <= max) {
+                filtteroidut_sanat[level] = [];
+            }
         }
         
         let sizeofQ = Q.length;
  
         for (let i = 0; i < sizeofQ; ++i) {
- 
+            
             let word = Q[0].split("");
             Q.shift();
+            let parent = [...word];
  
             for (let pos = 0; pos < wordlength; ++pos) {
- 
+                
+                
                 let orig_char = word[pos];
  
                 for (let c = 'a'.charCodeAt(0); c <= 'ö'.charCodeAt(0); ++c)
@@ -55,24 +88,52 @@ function LäheisetSanat(aloitussana, D, min, max) {
 
                     delete D[word.join("")];
                     
-                    if (min <= level && level <= max) {
-                        filtteroidut_sanat[level].push(word.join(""));
-                    }
+                    if (!lopetussana) {
+                        if (min <= level && level <= max) {
+                            filtteroidut_sanat[level].push(word.join(""));
+                        if (level > max) return filtteroidut_sanat;
 
+                    }} else {
+                        reitit[word.join("")] = parent.join("");
+                        
+                        if (word.join("") == lopetussana) {
+                            filtteroidut_sanat = ListaReitistä(reitit, lopetussana);
+                            return [filtteroidut_sanat, level]
+                        }
+                        
+                    }
                     Q.push(word.join(""));
                 }
 
                 word[pos] = orig_char;
+            parent = [...word]
             }
         }
     }
-
+    if (filtteroidut_sanat.length == 0) return {msg: "mitään ei löytynyt"};
     return filtteroidut_sanat;
 }
+router.get('/:aloitussana/:lopetussana', (req, res) => {
+    aloitussana = req.params.aloitussana
+    lopetussana = req.params.lopetussana
+
+    if (aloitussana && lopetussana) {
+        sanat = getConfig("sanat.json")
+        
+        D = {}
+            for (let i = 0; i < sanat.length; ++i) {
+                 D[sanat[i]] = 1;
+        }
+        reitti = LäheisetSanat(aloitussana, lopetussana, D, 0, Infinity)
+        console.log(reitti)
+        return res.json(reitti)
+    }
+})
 
 router.get('/', (req, res) => {
     sanat = getConfig("sanat.json")
     console.log(req.query)
+
     const {
         query: { filtteri, aloitussana, väli},
     } = req;
@@ -112,7 +173,7 @@ router.get('/', (req, res) => {
                  D[sanat[i]] = 1;
             }
 
-            filtter_sanat = LäheisetSanat(aloitussana, D, min, max);
+            filtter_sanat = LäheisetSanat(aloitussana, NaN, D, min, max);
         }
         return res.json(filtter_sanat)
     }
@@ -128,5 +189,6 @@ router.get('/', (req, res) => {
 
     return res.json(sanat)
 })
+
 
 module.exports = router;
