@@ -111,7 +111,7 @@ document.addEventListener("keyup", (e) => {
   if (pressedKey === "Enter" && moneskoRivi < TASO) {
     moneskoRuutu = 0;
     currentGuess = [];
-    if(moneskoRivi != TASO - 1) {
+    if(moneskoRivi != TASO - 2) {
         moneskoRivi++;
     }
     highlightCurrentBox(); // Update highlight
