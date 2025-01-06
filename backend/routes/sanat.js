@@ -118,7 +118,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
     lopetussana = req.params.lopetussana
 
     if (aloitussana && lopetussana) {
-        sanat = getConfig("public/js/sanat.json")
+        sanat = getConfig("sanat.json")
         
         D = {}
             for (let i = 0; i < sanat.length; ++i) {
@@ -131,7 +131,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    sanat = getConfig("public/js/sanat.json")
+    sanat = getConfig("sanat.json")
     console.log(req.query)
 
     const {
