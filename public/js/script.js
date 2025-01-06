@@ -50,9 +50,17 @@ function highlightCurrentBox() {
 
 
 function deleteLetter() {
-  if (moneskoRuutu > 0) {
+  if (moneskoRuutu < 4) {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu - 1];
+    box.textContent = "";
+    box.classList.remove("filled-box");
+    currentGuess.pop();
+    moneskoRuutu -= 1;
+  } else
+  {
+    let row = document.getElementsByClassName("letter-row")[moneskoRivi];
+    let box = row.children[moneskoRuutu];
     box.textContent = "";
     box.classList.remove("filled-box");
     currentGuess.pop();
@@ -142,6 +150,7 @@ document.addEventListener("keyup", (e) => {
     highlightCurrentBox();
     return;
   }
+
 
   // Only allow valid letters to be entered
   let found = pressedKey.match(/[a-ä]/gi);
