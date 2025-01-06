@@ -51,15 +51,14 @@ function highlightCurrentBox() {
 function deleteLetter() {
   // Get the current row
   let row = document.getElementsByClassName("letter-row")[moneskoRivi];
-  
-  // Check if the current box is empty
+
+  // If the current box is empty, move back to the previous box (if possible)
   if (moneskoRuutu > 0) {
-    let box = row.children[moneskoRuutu - 1]; // Current box (or previous if moving back)
-    
-    // If the current box is empty, move to the previous box
-    if (box.textContent === "" && moneskoRuutu > 1) {
-      moneskoRuutu -= 1;
-      box = row.children[moneskoRuutu - 1]; // Update to the previous box
+    let box = row.children[moneskoRuutu - 1]; // Target the current box
+
+    if (box.textContent === "") {
+      moneskoRuutu -= 1; // Move back
+      box = row.children[moneskoRuutu]; // Update to the previous box
     }
 
     // Delete the content of the determined box
@@ -68,13 +67,9 @@ function deleteLetter() {
 
     // Update the guess array
     currentGuess.pop();
-  } else if (moneskoRuutu === 0 && row.children[0].textContent !== "") {
-    // Special case for the first box
-    row.children[0].textContent = "";
-    row.children[0].classList.remove("filled-box");
-    currentGuess.pop();
   }
 }
+
 
 
 function insertLetter(pressedKey) {
