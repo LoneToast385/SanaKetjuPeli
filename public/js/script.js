@@ -1,5 +1,18 @@
-import { WORDS } from "/api/sanat";
+let WORDS = [];
 
+async function loadWords() {
+    try {
+        const response = await fetch("/api/sanat");
+        const data = await response.json();
+        WORDS = data.WORDS; // Assuming the API returns { WORDS: [...] }
+        console.log("Words loaded:", WORDS);
+    } catch (error) {
+        console.error("Error loading words:", error);
+    }
+}
+
+// Call the function to load the words
+loadWords();
 const TASO = 5;
 let moneskoRivi = 0;
 let currentGuess = [];
