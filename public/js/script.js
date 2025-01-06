@@ -1,10 +1,11 @@
-let WORDS = [];
+let WORDS = new Set(); // Initialize as a Set
 
 async function loadWords() {
     try {
         const response = await fetch("/api/sanat");
         const data = await response.json();
-        WORDS = data.WORDS; 
+        // Populate the Set with the words from the API
+        data.WORDS.forEach(word => WORDS.add(word)); 
         console.log("Words loaded:", WORDS);
     } catch (error) {
         console.error("Error loading words:", error);
@@ -94,6 +95,10 @@ function areGuessesLegal() {
     let row = rows[i];
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
     guesses.push(word);
+    if (!WORDS.has(word)) { // Check if the guessed word is in the WORDS set
+          return false;
+}
+
   }
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
