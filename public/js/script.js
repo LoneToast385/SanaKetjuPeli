@@ -58,7 +58,7 @@ function deleteLetter() {
   moneskoRuutu -= 1;
 }
 
-bool areGuessesLegal() {
+var areGuessesLegal = function() {
     let guesses = new set();  //Muodostetaan sanoja ja asetetaan ne settiin jotta voidaan verrata yhtä toiseen.
     for(let i = 0; i <= TASO.length; i++) { 
         let tempWord = "";
@@ -77,6 +77,7 @@ bool areGuessesLegal() {
                 changedLetters += 1;
         if(changedLetters > 1)
             return false;
+        }
     }
     return true;
 }
