@@ -50,14 +50,23 @@ function highlightCurrentBox() {
 
 
 function deleteLetter() {
-  if (moneskoRuutu > 0) {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu - 1];
-    box.textContent = "";
-    box.classList.remove("filled-box");
-    currentGuess.pop();
-    moneskoRuutu -= 1;
-  }
+    if (moneskoRuutu == 4 && box.textContent != "") {
+        row = document.getElementsByClassName("letter-row")[moneskoRivi];
+        box = row.children[moneskoRuutu];
+        box.textContent = "";
+        box.classList.remove("filled-box");
+        currentGuess.pop();
+    } else
+    if (moneskoRuutu > 0) {
+        row = document.getElementsByClassName("letter-row")[moneskoRivi];
+        box = row.children[moneskoRuutu - 1];
+        box.textContent = "";
+        box.classList.remove("filled-box");
+        currentGuess.pop();
+        moneskoRuutu -= 1;
+    }
 }
 
 function insertLetter(pressedKey) {
