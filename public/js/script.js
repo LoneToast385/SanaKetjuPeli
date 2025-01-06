@@ -102,7 +102,7 @@ document.addEventListener("keyup", (e) => {
 
   // Restrict vertical movement
   if (pressedKey === "ArrowDown") {
-    if (moneskoRivi + 1 < TASO) { // Prevent moving below the last row
+    if (moneskoRivi + 2 < TASO) { // Prevent moving below the last row
       moneskoRivi++;
       highlightCurrentBox();
     }
