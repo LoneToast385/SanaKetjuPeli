@@ -79,3 +79,26 @@ h1 {
   background-color: #FFFACD; /* Light yellow background */
 }
 
+#tarkista-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #4CAF50; /* Example background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#tarkista-btn:hover {
+    background-color: #45a049; /* Slightly darker green */
+    transform: scale(1.05); /* Slightly larger when hovered */
+}
+
+#tarkista-btn:active {
+    background-color: #3e8e41; /* Darker when pressed */
+    transform: scale(0.98); /* Shrink a bit on click */
+}
+
