@@ -1,7 +1,7 @@
 let WORDS = new Set(); // Initialize as a Set
 let TASO;
 let aloitussana;
-let lopetussana;
+let lopetussana; //
 
 async function loadWords() {
     try {
