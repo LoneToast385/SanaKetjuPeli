@@ -1,24 +1,52 @@
 let WORDS = new Set(); // Initialize as a Set
+let TASO;
+let aloitussana;
+let lopetussana;
 
 async function loadWords() {
     try {
         const response = await fetch("/api/sanat");
         const data = await response.json();
-        // Populate the Set with the words from the API
-        data.WORDS.forEach(word => WORDS.add(word)); 
-        console.log("Words loaded:", WORDS);
+        
+        // Assuming data is an array of words directly (not inside a "WORDS" property)
+        if (Array.isArray(data)) {
+            data.forEach(word => WORDS.add(word));
+            console.log("Words loaded:", WORDS);
+
+            // Randomly select TASO and aloitussana after words are loaded
+            TASO = Math.floor(Math.random() * (5 - 3 + 1)) + 3; // Random number between 3 and 5
+            aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)]; // Randomly pick a word from the set
+            console.log("Randomly selected TASO:", TASO);
+            console.log("Randomly selected aloitussana:", aloitussana);
+
+            // Now, you can use TASO and aloitussana as needed
+            const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`; // Use the values in your API request
+            await fetchWordFromApi(url); // Call function to fetch and handle lopetussana
+        } else {
+            console.error("Unexpected data structure:", data);
+        }
     } catch (error) {
         console.error("Error loading words:", error);
     }
 }
 
-// Initialize constants and variables
-const TASO = 5;
+async function fetchWordFromApi(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
+        console.log("Randomly selected lopetussana:", lopetussana);
+    } catch (error) {
+        console.error("Error fetching lopetussana:", error);
+    }
+}
+
+
 let moneskoRivi = 0;
 let moneskoRuutu = 0;
 let currentGuess = [];
-const lopetussana = "sprit";
-const aloitussana = "write";
+const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
 
 function initBoard() {
   let board = document.getElementById("game-board");
@@ -34,14 +62,15 @@ function initBoard() {
 
       // Add click event listener for mouse navigation
       box.addEventListener('click', () => {
-        moneskoRivi = i;
-        moneskoRuutu = j;
+        moneskoRivi = i - 1; // Set the clicked row index
+        moneskoRuutu = j; // Set the clicked column index
         highlightCurrentBox(); // Highlight the selected box
       });
     }
     board.appendChild(row);
   }
 }
+
 
 function highlightCurrentBox() {
   // Remove highlight from all boxes
@@ -53,6 +82,7 @@ function highlightCurrentBox() {
   const currentBox = currentRow.children[moneskoRuutu];
   currentBox.classList.add("selected-box");
 }
+
 
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
@@ -95,15 +125,18 @@ function insertLetter(pressedKey) {
 function areGuessesLegal() {
   let rows = document.getElementsByClassName("letter-row");
   let guesses = [];
-  for (let i = 0; i < TASO; i++) {
+  for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
     guesses.push(word);
-    if (!WORDS.has(word)) { // Check if the guessed word is in the WORDS set
-          return false;
-}
-
+    
+    // Only check the word once all letters are entered (no empty boxes)
+    if (word.length === 5 && !WORDS.has(word)) { // Ensure the word is 5 letters long and exists in the WORDS set
+      return false;
+    }
   }
+
+  // If the difference between words is more than one letter, return false
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
     for (let j = 0; j < guesses[i].length; j++) {
@@ -111,8 +144,10 @@ function areGuessesLegal() {
       if (differences > 1) return false;
     }
   }
-  return true;
+  
+  return true; // Everything checks out
 }
+
 
 document.addEventListener("keyup", (e) => {
   let pressedKey = String(e.key);
@@ -185,7 +220,22 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key }));
 });
 
+function checkWords() {
+  // Check if all guesses are correct
+  if (areGuessesLegal()) {
+    alert("Onnittelut! Kaikki sanasi toimivat ja olet suorittanut pelisessiosi! Voit uudestaanladata sivun ja pelata uudestaan!");
+  } else {
+    alert("Yksi tai useampi sanoistasi joko eivät ole meidän sanalistassa tai muuttavat enempää kuin vain yhtä kirjainta. Tarkista vastauksesi...");
+  }
+}
+
+  document.getElementById("tarkista-btn").addEventListener("click", checkWords);
+
 // Initialize the board and load words
-initBoard();
-highlightCurrentBox();
-loadWords();
+async function init() {
+    await loadWords();  // Ensure words are loaded before initializing the game
+    initBoard();
+    highlightCurrentBox();
+}
+init();  // Call this to start the game setupdocument.getElementById("tarkista-btn").addEventListener("click", checkWords);
+console.log(apiUrl);
