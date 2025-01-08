@@ -37,6 +37,8 @@ async function fetchWordFromApi(url) {
         console.log(data);
         lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
         console.log("Randomly selected lopetussana:", lopetussana);
+        if (!lopetussana)
+            await fetchWordFromApi(url);
     } catch (error) {
         console.error("Error fetching lopetussana:", error);
     }
