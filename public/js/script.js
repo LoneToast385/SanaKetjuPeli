@@ -5,7 +5,7 @@ let lopetussana;
 
 async function loadWords() {
     try {
-        const response = await fetch("/api/sanat?filtteri=aloitusana);
+        const response = await fetch("/api/sanat?filtteri=aloitusana");
         const data = await response.json();
         
         // Assuming data is an array of words directly (not inside a "WORDS" property)
