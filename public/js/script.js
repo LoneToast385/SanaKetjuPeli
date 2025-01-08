@@ -35,6 +35,10 @@ async function fetchWordFromApi(url) {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
+        if (!TASO in data) {
+            await fetchWordFromApi(url);
+            return;
+        }
         lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
         console.log("Randomly selected lopetussana:", lopetussana);
     } catch (error) {
