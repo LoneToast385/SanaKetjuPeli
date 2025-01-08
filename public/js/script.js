@@ -14,7 +14,7 @@ async function loadWords() {
             console.log("Words loaded:", WORDS);
 
             // Randomly select TASO and aloitussana after words are loaded
-            TASO = Math.floor(Math.random() * (5 - 3 + 1)) + 3; // Random number between 3 and 5
+            TASO = Math.floor(Math.random() * 3) + 3; // Random number between 3 and 6
             aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)]; // Randomly pick a word from the set
             console.log("Randomly selected TASO:", TASO);
             console.log("Randomly selected aloitussana:", aloitussana);
