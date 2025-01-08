@@ -46,13 +46,13 @@ async function fetchWordFromApi(url) {
             return 1
         }
         else {
-            for(int n; n <= 3; n++) {
+            for(let n; n <= 3; n++) {
                 if (data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)] != "") {
                     lopetussana = data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)];
                     return 1;
                 }
             }
-            for(int n; n <= 3; n++) {
+            for(let n; n <= 3; n++) {
                 if (data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)] != "") {
                     lopetussana = data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)];
                     return 1;
