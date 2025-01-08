@@ -23,7 +23,7 @@ async function loadWords() {
             const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`; // Use the values in your API request
             while(!successfulReturn) {
                 tempValue = await fetchWordFromApi(url)
-                if(tempValue == 1);
+                if(tempValue == 1)
                     successfulReturn = true;
                 else
                     aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
