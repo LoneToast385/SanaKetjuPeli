@@ -118,7 +118,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
     lopetussana = req.params.lopetussana
 
     if (aloitussana && lopetussana) {
-        sanat = getConfig("../../public/js/sanat.json")
+        sanat = getConfig("../../public/js/aloitussanat.json")
         
         D = {}
             for (let i = 0; i < sanat.length; ++i) {
@@ -131,7 +131,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    sanat = getConfig("../../public/js/sanat.json")
+    sanat = getConfig("../../public/js/aloitussanat.json")
     console.log(req.query)
 
     const {
@@ -179,14 +179,15 @@ router.get('/', (req, res) => {
     }
 
     if (filtteri && !aloitussana) {
-        return res.status(404).json({msg: "aloitussanaa ei määritelty"})
+        if (filtteri == "aloitussana") return res.json(sanat)
+        return res.status(404).json({msg: "filtteri löytyy, mutta se joko tarvitsee jotain muuta lisäksi tai sitten se on virheellinen"})
     }
 
     if (!filtteri && aloitussana) {
         return res.status(404).json({msg: "filtteriä ei määritelty"})
     }
 
-
+    sanat = getConfig("../../public/js/sanat.json")
     return res.json(sanat)
 })
 

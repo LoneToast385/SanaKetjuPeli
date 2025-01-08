@@ -5,23 +5,29 @@ let lopetussana;
 
 async function loadWords() {
     try {
-        const response = await fetch("/api/sanat");
+        const response = await fetch("/api/sanat?filtteri=aloitussana");
         const data = await response.json();
-        
+        let successfulReturn = false;
         // Assuming data is an array of words directly (not inside a "WORDS" property)
         if (Array.isArray(data)) {
             data.forEach(word => WORDS.add(word));
             console.log("Words loaded:", WORDS);
 
             // Randomly select TASO and aloitussana after words are loaded
-            TASO = Math.floor(Math.random() * (5 - 3 + 1)) + 3; // Random number between 3 and 5
+            TASO = Math.floor(Math.random() * 3) + 3; // Random number between 3 and 6
             aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)]; // Randomly pick a word from the set
             console.log("Randomly selected TASO:", TASO);
             console.log("Randomly selected aloitussana:", aloitussana);
 
             // Now, you can use TASO and aloitussana as needed
             const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`; // Use the values in your API request
-            await fetchWordFromApi(url); // Call function to fetch and handle lopetussana
+            while(!successfulReturn) {
+                tempValue = await fetchWordFromApi(url)
+                if(tempValue == 1)
+                    successfulReturn = true;
+                else
+                    aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
+            }
         } else {
             console.error("Unexpected data structure:", data);
         }
@@ -35,8 +41,25 @@ async function fetchWordFromApi(url) {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data);
-        lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
-        console.log("Randomly selected lopetussana:", lopetussana);
+        if (data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)] != "") {
+            lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
+            return 1
+        }
+        else {
+            for(let n; n <= 3; n++) {
+                if (data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)] != "") {
+                    lopetussana = data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)];
+                    return 1;
+                }
+            }
+            for(let n; n <= 3; n++) {
+                if (data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)] != "") {
+                    lopetussana = data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)];
+                    return 1;
+                } 
+            }
+            return 0;
+        }
     } catch (error) {
         console.error("Error fetching lopetussana:", error);
     }
