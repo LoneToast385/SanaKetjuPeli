@@ -1,9 +1,11 @@
 # SanaKetjuPeli
-**!Tuotettu MAYK;in YTI kurssin yhteydessä!**\
-Tutkikaa repositoriota rauhassa, löytyy aikaisempia yrityksiä järjestysalgoritmille yms.\
-Tarkoituksena on tehdä nettipeli tästä ja hostata jotta kaikki voisivat pelata peliä ilman että pyörittävät skriptiä itse.\
+**Tuotettu MAYK;in YTI kurssin yhteydessä**\
+Repositorio on täysin avoin, toistaisesti ainakaan ei ole minkäänlaisia tulostaulukoita missä huijata tai muuta sellaista joten ei ole mitään syytä piilotella mitään. \
+Nettisivu hostataan Vercelin kautta.\
 \
-Repo on aikaisessa vaiheessa ja tulee uudestaankasatuksi kun nettisivu on valmis, toistaiseksi käytössä vain versio ohjauksena ja skriptien jakeluun tiimin välillä.\
+**Olen löytänyt bugin pelissä! Mitä voin tehdä?**\
+Avatkaa Issue tänne githubiin mieluiten niin tarkoilla uudestaantuotto askelilla kuin mahdollista jotta saamme ongelman korjattua ASAP. \
 \
-Jotkut skripteistä on muokattuja versioita täältä löytyvistä: \
+Peli löytyy täältä: https://sana-ketju-peli.vercel.app/ \
+Sanaketjunluonti algoritmi skripti on muokattu versio täältä löytyvästä: \
 https://www.geeksforgeeks.org/word-ladder-length-of-shortest-chain-to-reach-a-target-word/
