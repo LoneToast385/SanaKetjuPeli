@@ -21,7 +21,7 @@ async function loadWords() {
             const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=2-6`;
             while(!successfulReturn) {
                 let tempValue = await fetchWordFromApi(url)
-                if(tempValue == 1 && typeof lopetussana != "undefined")
+                if(tempValue == 1 && typeof lopetussana !== "undefined")
                     successfulReturn = true;
                 else
                     aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
