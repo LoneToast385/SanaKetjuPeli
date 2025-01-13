@@ -38,8 +38,6 @@ async function fetchWordFromApi(url) {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)];
-        /*
         if (data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)] != "") {
             lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
             return 1
@@ -57,13 +55,11 @@ async function fetchWordFromApi(url) {
                     return 1;
                 } 
             }
-            */
             return 0;
         }
-    } catch (error) {
+} catch (error) {
         console.error("Error fetching lopetussana:", error);
     }
-}
 
 
 let moneskoRivi = 0;
