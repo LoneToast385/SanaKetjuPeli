@@ -107,7 +107,7 @@ function highlightCurrentBox() {
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu];
-    if (box.textContent != "") {
+    if (box.textContent != "" || moneskoRuutu == 0) {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu];
         box.textContent = "";
