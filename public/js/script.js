@@ -108,13 +108,13 @@ function highlightCurrentBox() {
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu];
-    if (moneskoRuutu == 4 && box.textContent != "") {
+    if (box.textContent != "") {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu];
         box.textContent = "";
         box.classList.remove("filled-box");
         currentGuess.pop();
-    } else if (moneskoRuutu == 4 && box.textContent == "") {
+    } else if (box.textContent == "") {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
         box.textContent = "";
