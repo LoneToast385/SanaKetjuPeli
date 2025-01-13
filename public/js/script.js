@@ -8,21 +8,19 @@ async function loadWords() {
         const response = await fetch("/api/sanat?filtteri=aloitussana");
         const data = await response.json();
         let successfulReturn = false;
-        // Assuming data is an array of words directly (not inside a "WORDS" property)
         if (Array.isArray(data)) {
             data.forEach(word => WORDS.add(word));
             console.log("Words loaded:", WORDS);
 
             // Randomly select TASO and aloitussana after words are loaded
-            TASO = Math.floor(Math.random() * 3) + 3; // Random number between 3 and 6
-            aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)]; // Randomly pick a word from the set
+            TASO = Math.floor(Math.random() * 3) + 3;
+            aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
             console.log("Randomly selected TASO:", TASO);
             console.log("Randomly selected aloitussana:", aloitussana);
 
-            // Now, you can use TASO and aloitussana as needed
-            const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=2-6`; // Use the values in your API request
+            const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=2-6`;
             while(!successfulReturn) {
-                tempValue = await fetchWordFromApi(url)
+                let tempValue = await fetchWordFromApi(url)
                 if(tempValue == 1)
                     successfulReturn = true;
                 else
