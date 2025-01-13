@@ -13,7 +13,7 @@ async function loadWords() {
             console.log("Words loaded:", WORDS);
 
             // Randomly select TASO and aloitussana after words are loaded
-            TASO = 5 //Math.floor(Math.random() * 3) + 3;
+            TASO = 5;
             aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
             console.log("Randomly selected TASO:", TASO);
             console.log("Randomly selected aloitussana:", aloitussana);
@@ -60,6 +60,7 @@ async function fetchWordFromApi(url) {
 } catch (error) {
         console.error("Error fetching lopetussana:", error);
     }
+}
 
 
 let moneskoRivi = 0;
