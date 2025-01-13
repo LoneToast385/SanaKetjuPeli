@@ -217,7 +217,7 @@ document.addEventListener("keyup", (e) => {
   }
 
   // Handle backspace for deleting letters
-  if (pressedKey === "Backspace" && moneskoRuutu > 0) {
+  if (pressedKey === "Backspace" && moneskoRuutu >= 0) {
     deleteLetter();
     highlightCurrentBox();
     return;
