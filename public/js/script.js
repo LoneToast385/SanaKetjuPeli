@@ -13,7 +13,7 @@ async function loadWords() {
             console.log("Words loaded:", WORDS);
 
             // Randomly select TASO and aloitussana after words are loaded
-            TASO = Math.floor(Math.random() * 3) + 3;
+            TASO = 5 //Math.floor(Math.random() * 3) + 3;
             aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
             console.log("Randomly selected TASO:", TASO);
             console.log("Randomly selected aloitussana:", aloitussana);
@@ -38,7 +38,8 @@ async function fetchWordFromApi(url) {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+        lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)];
+        /*
         if (data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)] != "") {
             lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
             return 1
@@ -56,6 +57,7 @@ async function fetchWordFromApi(url) {
                     return 1;
                 } 
             }
+            */
             return 0;
         }
     } catch (error) {
