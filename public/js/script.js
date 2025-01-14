@@ -65,7 +65,7 @@ async function fetchWordFromApi(url) {
 
 let moneskoRivi = 0;
 let moneskoRuutu = 0;
-let currentGuess = [];
+
 const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
 
 function initBoard() {
@@ -112,20 +112,17 @@ function deleteLetter() {
         box = row.children[moneskoRuutu];
         box.textContent = "";
         box.classList.remove("filled-box");
-        currentGuess.pop();
     } else if (box.textContent == "") {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
         box.textContent = "";
         box.classList.remove("filled-box");
-        currentGuess.pop();
         moneskoRuutu -= 1;
     } else if (moneskoRuutu > 0) {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
         box.textContent = "";
         box.classList.remove("filled-box");
-        currentGuess.pop();
         moneskoRuutu -= 1;
     }
 }
@@ -136,9 +133,9 @@ function insertLetter(pressedKey) {
     let box = row.children[moneskoRuutu];
     box.textContent = pressedKey;
     box.classList.add("filled-box");
-    currentGuess.push(pressedKey);
-    if (moneskoRuutu != 4)
-        moneskoRuutu += 1;
+    if (moneskoRuutu != 4) {
+      moneskoRuutu += 1;
+    }
   }
 }
 
@@ -150,11 +147,10 @@ function areGuessesLegal() {
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
     guesses.push(word);
     
-    // Only check the word once all letters are entered (no empty boxes)
-    if (word.length === 5 && !WORDS.has(word)) { // Ensure the word is 5 letters long and exists in the WORDS set
-      return false;
-    }
+    if (word.length != 5) return false;
+    if (!WORDS.has(word)) return false;
   }
+  console.log(guesses)
 
   // If the difference between words is more than one letter, return false
   for (let i = 0; i < guesses.length - 1; i++) {
@@ -174,7 +170,6 @@ document.addEventListener("keyup", (e) => {
 
   if (pressedKey === "Enter" && moneskoRivi < TASO) {
     moneskoRuutu = 0;
-    currentGuess = [];
     if(moneskoRivi != TASO - 2) {
         moneskoRivi++;
     }
