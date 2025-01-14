@@ -142,6 +142,9 @@ function insertLetter(pressedKey) {
 function areGuessesLegal() {
   let rows = document.getElementsByClassName("letter-row");
   let guesses = [];
+
+  guesses.push(aloitussana)
+
   for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
@@ -150,9 +153,9 @@ function areGuessesLegal() {
     if (word.length != 5) return false;
     if (!WORDS.has(word)) return false;
   }
-  console.log(guesses)
 
-  // If the difference between words is more than one letter, return false
+  guesses.push(lopetussana);
+
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
     for (let j = 0; j < guesses[i].length; j++) {
@@ -161,7 +164,7 @@ function areGuessesLegal() {
     }
   }
   
-  return true; // Everything checks out
+  return true;
 }
 
 
