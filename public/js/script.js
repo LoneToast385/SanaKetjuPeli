@@ -27,9 +27,16 @@ async function loadWords() {
               if (key > suurin) suurin = Number(key);
             })
             
-            let index = randomIntFromInterval(TASO, suurin)
-            console.log(aloitussanat[index])
-            aloitussana = Array.from(aloitussanat[index])[Math.floor(Math.random() * aloitussanat[index].length)];
+            let indexiä_ei_löydetty = true;
+            let index;
+
+            while (indexiä_ei_löydetty) {
+              index = randomIntFromInterval(TASO, suurin)
+              console.log(index)
+              if (typeof aloitussanat[index] !== "undefined") indexiä_ei_löydetty = false;
+            }
+            
+            aloitussana = Array.from(aloitussanat[index])[randomIntFromInterval(0, aloitussanat[index].length -1)];
             
             console.log("Randomly selected aloitussana:", aloitussana);
 
