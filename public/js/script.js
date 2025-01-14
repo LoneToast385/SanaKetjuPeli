@@ -4,9 +4,13 @@ let aloitussana;
 let lopetussana;
 let ratkaistu;
 
+function randomIntFromInterval(min, max) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 async function loadWords() {
     try {
-        const response = await fetch("/api/sanat?filtteri=aloitussana");
+        const response = await fetch("/api/sanat");
         const data = await response.json();
         let successfulReturn = false;
         if (Array.isArray(data)) {
@@ -15,8 +19,18 @@ async function loadWords() {
 
             // Randomly select TASO and aloitussana after words are loaded
             TASO = 5;
-            aloitussana = Array.from(WORDS)[Math.floor(Math.random() * WORDS.size)];
-            console.log("Randomly selected TASO:", TASO);
+            let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
+            const aloitussanat = await vastaus.json();
+
+            let suurin = 0;
+            Object.keys(aloitussanat).map((key, index) => {
+              if (key > suurin) suurin = Number(key);
+            })
+            
+            let index = randomIntFromInterval(TASO, suurin)
+            console.log(aloitussanat[index])
+            aloitussana = Array.from(aloitussanat[index])[Math.floor(Math.random() * aloitussanat[index].length)];
+            
             console.log("Randomly selected aloitussana:", aloitussana);
 
             const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=2-6`;

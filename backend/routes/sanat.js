@@ -108,6 +108,27 @@ function LäheisetSanat(aloitussana, lopetussana, D, min, max) {
     if (!filtteroidut_sanat || filtteroidut_sanat.length == 0) return {msg: "mitään ei löytynyt"};
     return filtteroidut_sanat;
 }
+
+function maksimietäisyydet(sanat) {
+    sanojen_maksimietäisyydet = {}
+    for (i = 0; i < sanat.length; i++) {
+        nykyinen_sana = sanat[i]
+        D = {}
+            for (let i = 0; i < sanat.length; ++i) {
+                 D[sanat[i]] = 1;
+        }
+        filtteroidut_sanat = LäheisetSanat(nykyinen_sana, undefined, D, 0, Infinity)
+        suurin = 0
+        Object.keys(filtteroidut_sanat).map((key, index) => {
+            if (key > suurin) suurin = Number(key)
+        })
+        if (!(suurin in sanojen_maksimietäisyydet)) sanojen_maksimietäisyydet[suurin] = [];
+        sanojen_maksimietäisyydet[suurin] += nykyinen_sana;
+        console.log(nykyinen_sana, suurin)
+    }
+    return sanojen_maksimietäisyydet;
+}
+
 router.get('/:aloitussana/:lopetussana', (req, res) => {
     aloitussana = req.params.aloitussana
     lopetussana = req.params.lopetussana
@@ -126,7 +147,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    sanat = getConfig("../../public/js/aloitussanat.json")
+    sanat = getConfig("../../public/js/sanat.json")
     console.log(req.query)
 
     const {
@@ -174,17 +195,17 @@ router.get('/', (req, res) => {
     }
 
     if (filtteri && !aloitussana) {
-        if (filtteri == "aloitussana") return res.json(sanat)
+        sanat = getConfig("../../public/js/aloitussanat.json")
+        if (filtteri == "aloitussana") return res.json(sanat);
         return res.status(404).json({msg: "filtteri löytyy, mutta se joko tarvitsee jotain muuta lisäksi tai sitten se on virheellinen"})
     }
 
     if (!filtteri && aloitussana) {
         return res.status(404).json({msg: "filtteriä ei määritelty"})
     }
-
-    sanat = getConfig("../../public/js/sanat.json")
     return res.json(sanat)
 })
+
 
 
 module.exports = router;
