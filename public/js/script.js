@@ -2,6 +2,7 @@ let WORDS = new Set(); // Initialize as a Set
 let TASO;
 let aloitussana;
 let lopetussana;
+let ratkaistu;
 
 async function loadWords() {
     try {
@@ -80,11 +81,10 @@ function initBoard() {
       box.textContent = i === 0 ? aloitussana[j] : i === TASO ? lopetussana[j] : "";
       row.appendChild(box);
 
-      // Add click event listener for mouse navigation
       box.addEventListener('click', () => {
-        moneskoRivi = i - 1; // Set the clicked row index
-        moneskoRuutu = j; // Set the clicked column index
-        highlightCurrentBox(); // Highlight the selected box
+        moneskoRivi = i - 1; 
+        moneskoRuutu = j; 
+        highlightCurrentBox(); 
       });
     }
     board.appendChild(row);
@@ -93,11 +93,9 @@ function initBoard() {
 
 
 function highlightCurrentBox() {
-  // Remove highlight from all boxes
   const allBoxes = document.querySelectorAll(".letter-box");
   allBoxes.forEach((box) => box.classList.remove("selected-box"));
 
-  // Highlight the current box
   const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
   const currentBox = currentRow.children[moneskoRuutu];
   currentBox.classList.add("selected-box");
@@ -107,17 +105,20 @@ function highlightCurrentBox() {
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu];
+
     if (box.textContent != "" || moneskoRuutu == 0) {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu];
         box.textContent = "";
         box.classList.remove("filled-box");
+
     } else if (box.textContent == "") {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
         box.textContent = "";
         box.classList.remove("filled-box");
         moneskoRuutu -= 1;
+
     } else if (moneskoRuutu > 0) {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
@@ -239,8 +240,8 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
 });
 
 function checkWords() {
-  // Check if all guesses are correct
   if (areGuessesLegal()) {
+    ratkaistu = true 
     alert("Onnittelut! Kaikki sanasi toimivat ja olet suorittanut pelisessiosi! Voit uudestaanladata sivun ja pelata uudestaan!");
   } else {
     alert("Yksi tai useampi sanoistasi joko eivät ole meidän sanalistassa tai muuttavat enempää kuin vain yhtä kirjainta. Tarkista vastauksesi...");
@@ -249,11 +250,11 @@ function checkWords() {
 
   document.getElementById("tarkista-btn").addEventListener("click", checkWords);
 
-// Initialize the board and load words
 async function init() {
-    await loadWords();  // Ensure words are loaded before initializing the game
+    ratkaistu = false;
+    await loadWords();
     initBoard();
     highlightCurrentBox();
 }
-init();  // Call this to start the game setupdocument.getElementById("tarkista-btn").addEventListener("click", checkWords);
+init();
 console.log(apiUrl);
