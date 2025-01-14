@@ -59,12 +59,6 @@ function LäheisetSanat(aloitussana, lopetussana, D, min, max) {
     while (Q.length != 0) {
  
         ++level;
-
-        if (!lopetussana) {
-            if (min <= level && level <= max) {
-                filtteroidut_sanat[level] = [];
-            }
-        }
         
         let sizeofQ = Q.length;
  
@@ -90,6 +84,7 @@ function LäheisetSanat(aloitussana, lopetussana, D, min, max) {
                     
                     if (!lopetussana) {
                         if (min <= level && level <= max) {
+                            if (!(level in filtteroidut_sanat)) filtteroidut_sanat[level] = [];
                             filtteroidut_sanat[level].push(word.join(""));
                         if (level > max) return filtteroidut_sanat;
 
