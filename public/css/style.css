@@ -1,7 +1,7 @@
 body {
     font-family: sans-serif;
 }
-.navbar{
+.nav-bar{
     display: flex;
     height: 5rem;
     align-items: center;
