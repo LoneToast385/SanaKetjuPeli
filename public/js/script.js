@@ -314,8 +314,6 @@ function checkWords() {
   if (areGuessesLegal()) {
     ratkaistu = true 
     alert("Onnittelut! Kaikki sanasi toimivat ja olet suorittanut pelisessiosi! Voit uudestaanladata sivun ja pelata uudestaan!");
-  } else {
-    alert("Yksi tai useampi sanoistasi joko eivät ole meidän sanalistassa tai muuttavat enempää kuin vain yhtä kirjainta. Tarkista vastauksesi...");
   }
 }
 
