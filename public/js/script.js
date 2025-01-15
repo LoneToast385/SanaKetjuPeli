@@ -38,7 +38,7 @@ async function loadWords() {
               let index;
               
               while (käytettävät_sanat.length > 0) {
-                sana_index = randomIntFromInterval(0, käytettävät_etäisyydet.length - 1)
+                sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
                 aloitussana = käytettävät_sanat[sana_index];
                 etäisyyden_sanat.splice(sana_index, 1);
             
