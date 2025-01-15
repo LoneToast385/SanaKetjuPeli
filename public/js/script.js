@@ -43,6 +43,7 @@ async function loadWords() {
 
                 const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
                 let tempValue = await fetchWordFromApi(url)
+                console.log("Randomly selected lopetussana:", lopetussana)
                 if(tempValue == 1 && typeof lopetussana !== "undefined") {
                   successfulReturn = true;
                 } else {
