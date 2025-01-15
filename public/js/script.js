@@ -225,8 +225,10 @@ function areGuessesLegal() {
       for (let j = 0; j < virheet[i].length; j++) {
         box = row.children[j];
         if (virheet[i][j] == 1) {
+            box.classList.remove("correct-box");
             box.classList.add("incorrect-box");
         } else {
+            box.classList.remove("incorrect-box");
             box.classList.add("correct-box");
         }
         box.classList.remove("selected-box");
