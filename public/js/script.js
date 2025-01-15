@@ -199,7 +199,7 @@ function areGuessesLegal() {
       if (guesses[i][j] !== guesses[i + 1][j]) {
         differences++;
         if (differences > 1) {
-          if (i == guesses.length - 2) {
+          if (i == virheet.length) {
             virheet[i-1][j] = 1;
             virhe_löydetty = true;
           } else {
