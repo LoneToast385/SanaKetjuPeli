@@ -193,10 +193,11 @@ function areGuessesLegal() {
     let differences = 0;
     if (virhe_löydetty && i > ensimmäinen_virherivi) {
         virheet[i] = [1,1,1,1,1]
+        continue
     }
     for (let j = 0; j < guesses[i].length; j++) {
-      if (guesses[i][j] !== guesses[i + 1][j]) differences++;
-      if (differences > 1) {
+      if (guesses[i][j] !== guesses[i + 1][j]) {
+        differences++;
         if (i == guesses.length - 2) {
           virheet[i-1][j] = 1;
           virhe_löydetty = true;
@@ -205,7 +206,7 @@ function areGuessesLegal() {
           virhe_löydetty = true;
         }
         if (i < ensimmäinen_virherivi) ensimmäinen_virherivi = i;
-      };
+      }
     }
   }
   console.log(virheet);
