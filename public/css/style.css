@@ -38,7 +38,7 @@ h1 {
 
 .correct-box {
   border: 2px solid rgb(87, 252, 175);
-  background-color:rgba(199, 213, 231, 0.5);
+  background-color:rgba(87, 252, 175, 0.5);
 }
 
 .incorrect-box {
