@@ -25,7 +25,7 @@ async function loadWords() {
             let käytettävät_sanat = [];
             Object.keys(aloitussanat).map((key, index) => {
               if (key >= TASO) {
-                for (int i = 0; i < aloitussanat[key].length; i++) {
+                for (let i = 0; i < aloitussanat[key].length; i++) {
                   käytettävät_sanat.push(aloitussanat[key][i]);
                 }
               };
