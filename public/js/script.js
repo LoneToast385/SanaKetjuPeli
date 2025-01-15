@@ -198,16 +198,16 @@ function areGuessesLegal() {
     for (let j = 0; j < guesses[i].length; j++) {
       if (guesses[i][j] !== guesses[i + 1][j]) {
         differences++;
-        if (i == guesses.length - 2) {
-          virheet[i-1][j] = 1;
-          virhe_löydetty = true;
-        } else {
-          virheet[i][j] = 1;
-          virhe_löydetty = true;
+        if (differences > 1) {
+          if (i == guesses.length - 2) {
+            virheet[i-1][j] = 1;
+            virhe_löydetty = true;
+          } else {
+            virheet[i][j] = 1;
+            virhe_löydetty = true;
+          }
+          if (i < ensimmäinen_virherivi) ensimmäinen_virherivi = i;
         }
-        if (i < ensimmäinen_virherivi) ensimmäinen_virherivi = i;
-      } else {
-        virheet[i][j] = 0
       }
     }
   }
