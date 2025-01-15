@@ -171,6 +171,7 @@ function areGuessesLegal() {
   guesses.push(aloitussana);
 
   let virhe_löydetty = false;
+  let ensimmäinen_virherivi = 0;
   
   for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
@@ -179,10 +180,10 @@ function areGuessesLegal() {
     
     if (word.length != 5 || !WORDS.has(word) || virhe_löydetty) {
       virheet.push([1, 1, 1, 1, 1]);
+      if (!virhe_löydetty) ensimmäinen_virherivi = i;
       virhe_löydetty = true;
       continue
     }
-    
     virheet.push([0,0,0,0,0]);
   }
 
@@ -190,7 +191,7 @@ function areGuessesLegal() {
 
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
-    if (virhe_löydetty) {
+    if (virhe_löydetty && i >= ensimmäinen_virhe) {
         virheet[i] = [1,1,1,1,1]
     }
     for (let j = 0; j < guesses[i].length; j++) {
@@ -203,6 +204,7 @@ function areGuessesLegal() {
           virheet[i][j] = 1;
           virhe_löydetty = true;
         }
+        ensimmäinen_virhe = i;
       };
     }
   }
