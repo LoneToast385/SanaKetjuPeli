@@ -36,6 +36,16 @@ h1 {
   text-transform: uppercase;
 }
 
+.correct-box {
+  border: 2px solid rgb(37, 123, 197);
+  background-color:rgba(199, 213, 231, 0.5);
+}
+
+.incorrect-box {
+ border: 2px solid rgb(255, 80, 127);
+ background-color:rgba(255, 80, 127, 0.5);
+}
+
 .filled-box {
   border: 2px solid black;
 }
