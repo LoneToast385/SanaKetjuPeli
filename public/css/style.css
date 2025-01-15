@@ -4,7 +4,6 @@ body {
 .navbar{
     display: flex;
     height: 5rem;
-    justify-content: space-between;
     align-items: center;
     padding-top: 1rem;
     border-bottom: 2px solid rgb(223, 251, 219);
