@@ -222,16 +222,19 @@ function areGuessesLegal() {
   for (let i = 0; i < virheet.length; i++) {
     row = document.getElementsByClassName("letter-row")[i];
     let box;
-    for (let j = 0; j < virheet[i].length; j++) {
-      let delay = 250 * i
-      setTimeout(()=> {
-            box = row.children[j];
-            if (virheet[i][j] == 1) {
-                box.classList.add("incorrect-box");
-            } else {
-                box.classList.add("correct-box");
-            }
-      }, delay)
+    let rowdelay = 200 * i * j
+    setTimeout(() => {
+      for (let j = 0; j < virheet[i].length; j++) {
+        let boxdelay = 200 * j
+        setTimeout(()=> {
+              box = row.children[j];
+              if (virheet[i][j] == 1) {
+                  box.classList.add("incorrect-box");
+              } else {
+                  box.classList.add("correct-box");
+              }
+        }, boxdelay)
+      }, rowdelay)
     }
   }
   
