@@ -32,10 +32,9 @@ async function loadWords() {
             })
 
             let successfulReturn = false;
+            let sana_index;
           
             while (!successfulReturn) {
-              let indexiä_ei_löydetty = true;
-              let index;
               
               while (käytettävät_sanat.length > 0) {
                 sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
