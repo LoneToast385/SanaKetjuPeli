@@ -153,17 +153,11 @@ router.get('/', (req, res) => {
     const {
         query: { filtteri, aloitussana, väli},
     } = req;
-    
-    if (filtteri && aloitussana) {
-        filtter_sanat = {}
-        
-        if (filtteri == "läheisetsanat") {
-            if (aloitussana.length != 5) return res.status(404).json({msg: "sanan pituus ei vastaa toivottua (5)"})
-            
-            min = 0;
-            max = Infinity;
 
-            if (väli) {
+    min = 0;
+    max = Infinity;
+    
+    if (väli) {
                 console.log(väli)
                 if (väli.includes("-")) {
 
@@ -179,8 +173,14 @@ router.get('/', (req, res) => {
                 } else {
                     min = parseInt(väli)
                     max = min
-                }
-            }
+        }
+    }
+    
+    if (filtteri && aloitussana) {
+        filtter_sanat = {}
+        
+        if (filtteri == "läheisetsanat") {
+            if (aloitussana.length != 5) return res.status(404).json({msg: "sanan pituus ei vastaa toivottua (5)"})
 
             console.log(min, max);
 
@@ -195,8 +195,15 @@ router.get('/', (req, res) => {
     }
 
     if (filtteri && !aloitussana) {
-        sanat = getConfig("../../public/js/aloitussanat.json")
-        if (filtteri == "aloitussana") return res.json(sanat);
+        if (filtteri == "aloitussana") {
+            sanat = getConfig("../../public/js/aloitussanat.json")
+            if (min == 0 && max == Infinity) res.json(sanat);
+            tietty_väli = {}
+            Object.keys(sanat).map((key, index) => {
+                if (min <= key && key <= max) tietty_väli[key] = sanat[key];
+            })
+            return res.json(tietty_väli)
+        }
         return res.status(404).json({msg: "filtteri löytyy, mutta se joko tarvitsee jotain muuta lisäksi tai sitten se on virheellinen"})
     }
 
