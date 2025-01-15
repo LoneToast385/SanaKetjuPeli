@@ -134,7 +134,7 @@ router.get('/:aloitussana/:lopetussana', (req, res) => {
     lopetussana = req.params.lopetussana
 
     if (aloitussana && lopetussana) {
-        sanat = getConfig("../../public/js/aloitussanat.json")
+        sanat = getConfig("../../public/js/sanat.json")
         
         D = {}
             for (let i = 0; i < sanat.length; ++i) {
