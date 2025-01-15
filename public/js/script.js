@@ -34,9 +34,7 @@ async function loadWords() {
             let successfulReturn = false;
             let sana_index;
           
-            while (!successfulReturn) {
-              
-              while (käytettävät_sanat.length > 0) {
+            while (!successfulReturn || käytettävät_sanat.length > 0) {
                 sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
                 aloitussana = käytettävät_sanat[sana_index];
                 käytettävät_sanat.splice(sana_index, 1);
@@ -50,7 +48,6 @@ async function loadWords() {
                 } else {
                   continue
                 }
-              }
             }
         } else {
             console.error("Unexpected data structure:", data);
