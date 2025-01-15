@@ -206,6 +206,8 @@ function areGuessesLegal() {
           virhe_löydetty = true;
         }
         if (i < ensimmäinen_virherivi) ensimmäinen_virherivi = i;
+      } else {
+        virheet[i][j] = 0
       }
     }
   }
