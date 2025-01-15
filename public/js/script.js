@@ -22,9 +22,13 @@ async function loadWords() {
             let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
             const aloitussanat = await vastaus.json();
 
-            let käytettävät_etäisyydet = [];
+            let käytettävät_sanat = [];
             Object.keys(aloitussanat).map((key, index) => {
-              if (key >= TASO) käytettävät_etäisyydet.push(key);
+              if (key >= TASO) {
+                for (i = 0; i < aloitussanat[key].length; i++) {
+                  käytettävät_sanat.push(aloitussanat[key][i]
+                }
+              };
             })
 
             let successfulReturn = false;
@@ -32,20 +36,10 @@ async function loadWords() {
             while (!successfulReturn) {
               let indexiä_ei_löydetty = true;
               let index;
-
-              while (indexiä_ei_löydetty) {
-                etäisyys = randomIntFromInterval(0, käytettävät_etäisyydet.length - 1)
-                käytettävät_etäisyydet.splice(etäisyys, 1);
-                index = käytettävät_etäisyydet[etäisyys];
-                console.log(index);
-                if (typeof aloitussanat[index] !== "undefined") indexiä_ei_löydetty = false;
-              }
-
-              etäisyyden_sanat = Array.from(aloitussanat[index]);
               
-              while (index.length > 0) {
+              while (käytettävät_sanat.length > 0) {
                 sana_index = randomIntFromInterval(0, käytettävät_etäisyydet.length - 1)
-                aloitussana = etäisyyden_sanat[sana_index];
+                aloitussana = käytettävät_sanat[sana_index];
                 etäisyyden_sanat.splice(sana_index, 1);
             
                 console.log("Randomly selected aloitussana:", aloitussana);
