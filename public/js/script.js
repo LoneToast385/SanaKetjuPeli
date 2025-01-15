@@ -222,7 +222,7 @@ function areGuessesLegal() {
   for (let i = 0; i < virheet.length; i++) {
     row = document.getElementsByClassName("letter-row")[i];
     let box;
-    let rowdelay = 200 * i * j
+    let rowdelay = 200 * i * (virheet[i].length - 1);
     setTimeout(() => {
       for (let j = 0; j < virheet[i].length; j++) {
         let boxdelay = 200 * j
