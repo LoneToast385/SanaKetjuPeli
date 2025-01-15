@@ -39,7 +39,7 @@ async function loadWords() {
               while (käytettävät_sanat.length > 0) {
                 sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
                 aloitussana = käytettävät_sanat[sana_index];
-                etäisyyden_sanat.splice(sana_index, 1);
+                käytettävät_sanat.splice(sana_index, 1);
             
                 console.log("Randomly selected aloitussana:", aloitussana);
 
