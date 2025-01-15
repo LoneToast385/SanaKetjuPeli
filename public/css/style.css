@@ -13,11 +13,12 @@ h1 {
     align-items: center;
     padding-top: 1rem;
     border-bottom: 2px solid rgb(223, 251, 219);
+    background-color: rgb(37, 123, 197);
 }
 
 a {
     text-decoration: none;
-    color: rgb(199, 213, 231) ;
+    color: rgb(0, 0, 0);
     font-size: 1.3rem;
     font-weight: bold;
 }
