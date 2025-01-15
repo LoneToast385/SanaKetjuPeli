@@ -191,7 +191,7 @@ function areGuessesLegal() {
 
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
-    if (virhe_löydetty && i > ensimmäinen_virherivi) {
+    if (virhe_löydetty && i > ensimmäinen_virherivi && i+1 <= virheet.length) {
         virheet[i] = [1,1,1,1,1]
         continue
     }
