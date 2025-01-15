@@ -8,7 +8,8 @@ body {
     align-items: center;
     padding-top: 1rem;
     border-bottom: 2px solid rgb(223, 251, 219);
-    background-color: solid rgb(37, 123, 197);
+    background-color: rgb(37, 123, 197);
+    overflow: hidden;
 }
 
 a {
