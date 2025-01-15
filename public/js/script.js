@@ -40,7 +40,7 @@ async function loadWords() {
             
             console.log("Randomly selected aloitussana:", aloitussana);
 
-            const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=2-6`;
+            const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
             while(!successfulReturn) {
                 let tempValue = await fetchWordFromApi(url)
                 if(tempValue == 1 && typeof lopetussana !== "undefined")
