@@ -1,14 +1,17 @@
 body {
     font-family: sans-serif;
 }
+.header {
+    background-color: rgb(37, 123, 197);
+    overflow: hidden;
+}
+
 .nav-bar{
     display: flex;
     height: 5rem;
     align-items: center;
     padding-top: 1rem;
     border-bottom: 2px solid rgb(223, 251, 219);
-    background-color: rgb(37, 123, 197);
-    overflow: hidden;
 }
 
 a {
