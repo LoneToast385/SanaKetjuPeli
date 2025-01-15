@@ -149,6 +149,8 @@ function deleteLetter() {
         box.classList.remove("filled-box");
         moneskoRuutu -= 1;
     }
+  box.classList.remove("correct-box")
+  box.classList.remove("incorrect-box")
 }
 
 function insertLetter(pressedKey) {
@@ -157,6 +159,8 @@ function insertLetter(pressedKey) {
     let box = row.children[moneskoRuutu];
     box.textContent = pressedKey;
     box.classList.add("filled-box");
+    box.classList.remove("correct-box")
+    box.classList.remove("incorrect-box")
     if (moneskoRuutu != 4) {
       moneskoRuutu += 1;
     }
@@ -211,7 +215,23 @@ function areGuessesLegal() {
       }
     }
   }
+  
   console.log(virheet);
+  let row;
+  
+  for (let i = 0; i < virheet.length; i++) {
+    row = document.getElementsByClassName("letter-row")[i];
+    let box;
+    for (let j = 0; j < virheet[i].length; j++) {
+      box = row.children[j];
+      if (virheet[i][j] == 1) {
+        box.classList.add("incorrect-box");
+      } else {
+        box.classList.add("correct-box");
+      }
+    }
+  }
+  
   if (virhe_löydetty) return false;
   return true;
 }
