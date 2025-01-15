@@ -234,8 +234,8 @@ function areGuessesLegal() {
                   box.classList.add("correct-box");
               }
         }, boxdelay)
-      }, rowdelay)
-    }
+      }
+    }, rowdelay)
   }
   
   if (virhe_löydetty) return false;
