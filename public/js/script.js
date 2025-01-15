@@ -170,7 +170,7 @@ function areGuessesLegal() {
 
   guesses.push(aloitussana);
 
-  virhe_löydetty = false;
+  let virhe_löydetty = false;
   
   for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
