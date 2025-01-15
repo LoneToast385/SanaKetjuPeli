@@ -1,11 +1,6 @@
 body {
     font-family: sans-serif;
 }
-
-h1 {
- text-align: center;
-}
-
 .navbar{
     display: flex;
     height: 5rem;
@@ -18,7 +13,7 @@ h1 {
 
 a {
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-size: 1.3rem;
     font-weight: bold;
 }
