@@ -166,28 +166,48 @@ function insertLetter(pressedKey) {
 function areGuessesLegal() {
   let rows = document.getElementsByClassName("letter-row");
   let guesses = [];
+  let virheet = [];
 
-  guesses.push(aloitussana)
+  guesses.push(aloitussana);
 
+  virhe_löydetty = false;
+  
   for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
     guesses.push(word);
     
-    if (word.length != 5) return false;
-    if (!WORDS.has(word)) return false;
+    if (word.length != 5 || !WORDS.has(word) || virhe_löydetty) {
+      virheet.push([1, 1, 1, 1, 1]);
+      virhe_löydetty = true;
+      continue
+    }
+    
+    virheet.push([0,0,0,0,0]);
   }
 
   guesses.push(lopetussana);
 
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
+    if (virhe_löydetty) {
+        virheet[i] = [1,1,1,1,1]
+    }
     for (let j = 0; j < guesses[i].length; j++) {
       if (guesses[i][j] !== guesses[i + 1][j]) differences++;
-      if (differences > 1) return false;
+      if (differences > 1) {
+        if (i == guesses.length - 2) {
+          virheet[i-1][j] = 1;
+          virhe_löydetty = true;
+        } else {
+          virheet[i][j] = 1;
+          virhe_löydetty = true;
+        }
+      };
     }
   }
-  
+  console.log(virheet);
+  if (virhe_löydetty) return false;
   return true;
 }
 
