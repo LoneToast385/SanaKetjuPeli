@@ -310,12 +310,20 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
   document.dispatchEvent(new KeyboardEvent("keyup", { key }));
 });
 
+var ilmoitusTausta = document.getElementById("ilmoitus");
+
+var span = document.getElementsByClassName("close")[0];
+
 function checkWords() {
   if (areGuessesLegal()) {
-    ratkaistu = true 
-    alert("Onnittelut! Kaikki sanasi toimivat ja olet suorittanut pelisessiosi! Voit uudestaanladata sivun ja pelata uudestaan!");
+    ratkaistu = true
+    ilmoitusTausta.style.display = "block";
   }
 }
+span.onclick = function() {
+  ilmoitusTausta.style.display = "none";
+}
+
 
   document.getElementById("tarkista-btn").addEventListener("click", checkWords);
 
