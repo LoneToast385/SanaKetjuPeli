@@ -1,32 +1,43 @@
 body {
-    font-family: sans-serif;
-}
-.header {
-    background-color: rgb(37, 123, 197);
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-.nav-bar{
-    display: flex;
-    height: 5rem;
-    align-items: center;
-    padding-top: 1rem;
-    border-bottom: 2px solid rgb(223, 251, 219);
+nav {
+  background: rgba(71, 161, 250, 0.8);
+  overflow: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 1.3rem;
-    font-weight: bold;
+.nav-bar {
+  height: 50px;
+  align-items: center;
+  flex-direction: column;
+}
+
+.nav-bar .logo {
+  padding: 10px 16px;
+  float: left;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  transition: .3s;
+  color: rgb(255,255,255);
 }
 
 .hide{
     display: none;
 }
 
+.content {
+  width: 100%;
+  height: 100vh;
+  margin-top:40px;
+}
+
 
 #game-board {
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   flex-direction: column;
