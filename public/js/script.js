@@ -1,4 +1,5 @@
-let WORDS = new Set(); // Initialize as a Set
+let WORDS = new Set();
+const maksimi_etäisyydet = {};
 let TASO = 3;
 let aloitussana;
 let lopetussana;
@@ -8,51 +9,48 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+async function sanat() {
+  try {
+    const response = await fetch("/api/sanat");
+    const data = await response.json();
+    if (Array.isArray(data)) data.forEach(word => WORDS.add(word));
+    
+    let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
+    aloitussanat = await vastaus.json();
+  } catch (error) {
+        console.error("Error loading words:", error);
+  }
+
 async function loadWords() {
     try {
-        const response = await fetch("/api/sanat");
-        const data = await response.json();
-        let successfulReturn = false;
-        if (Array.isArray(data)) {
-            data.forEach(word => WORDS.add(word));
-            console.log("Words loaded:", WORDS);
-            let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
-            const aloitussanat = await vastaus.json();
+        let käytettävät_sanat = [];
+          Object.keys(aloitussanat).map((key, index) => {
+            if (key >= TASO) {
+              for (let i = 0; i < aloitussanat[key].length; i++) {
+                käytettävät_sanat.push(aloitussanat[key][i]);
+              }
+            };
+          })
 
-            let käytettävät_sanat = [];
-            Object.keys(aloitussanat).map((key, index) => {
-              if (key >= TASO) {
-                for (let i = 0; i < aloitussanat[key].length; i++) {
-                  käytettävät_sanat.push(aloitussanat[key][i]);
-                }
-              };
-            })
-
-            let successfulReturn = false;
-            let sana_index;
+          let successfulReturn = false;
+          let sana_index;
           
-            while (!successfulReturn && käytettävät_sanat.length > 0) {
-                sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
-                aloitussana = käytettävät_sanat[sana_index];
-                käytettävät_sanat.splice(sana_index, 1);
-            
-                console.log("Randomly selected aloitussana:", aloitussana);
+          while (!successfulReturn && käytettävät_sanat.length > 0) {
+              sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
+              aloitussana = käytettävät_sanat[sana_index];
+              käytettävät_sanat.splice(sana_index, 1);
 
-                const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
-                let tempValue = await fetchWordFromApi(url)
-                console.log("Randomly selected lopetussana:", lopetussana, tempValue)
-                if(tempValue == 1 && typeof lopetussana !== "undefined") {
-                  successfulReturn = true;
-                } else {
-                  continue
-                }
-            }
-        } else {
-            console.error("Unexpected data structure:", data);
-        }
-    } catch (error) {
-        console.error("Error loading words:", error);
-    }
+              const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
+              let tempValue = await fetchWordFromApi(url)
+              if(tempValue == 1 && typeof lopetussana !== "undefined") {
+                successfulReturn = true;
+              } else {
+                continue
+              }
+          }
+  } else {
+      console.error("Unexpected data structure:", data);
+  }
 }
 
 async function fetchWordFromApi(url) {
@@ -359,6 +357,7 @@ span.onclick = function() {
 
 async function init() {
     ratkaistu = false;
+    await sanat();
     await loadWords();
     initBoard();
     highlightCurrentBox();
