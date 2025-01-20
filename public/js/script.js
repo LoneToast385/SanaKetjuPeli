@@ -16,7 +16,7 @@ async function sanat() {
     if (Array.isArray(data)) data.forEach(word => WORDS.add(word));
     
     let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
-    aloitussanat = await vastaus.json();
+    maksimi_etäisyydet = await vastaus.json();
   } catch (error) {
         console.error("Error loading words:", error);
   }
@@ -25,10 +25,10 @@ async function sanat() {
 async function loadWords() {
     try {
         let käytettävät_sanat = [];
-          Object.keys(aloitussanat).map((key, index) => {
+          Object.keys(maksimi_etäisyydet).map((key, index) => {
             if (key >= TASO) {
-              for (let i = 0; i < aloitussanat[key].length; i++) {
-                käytettävät_sanat.push(aloitussanat[key][i]);
+              for (let i = 0; i < maksimi_etäisyydet[key].length; i++) {
+                käytettävät_sanat.push(maksimi_etäisyydet[key][i]);
               }
             };
           })
