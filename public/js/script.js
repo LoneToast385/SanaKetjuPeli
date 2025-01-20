@@ -1,5 +1,5 @@
 let WORDS = new Set();
-const maksimi_etäisyydet = {};
+let maksimi_etäisyydet = {};
 let TASO = 3;
 let aloitussana;
 let lopetussana;
