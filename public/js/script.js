@@ -103,6 +103,7 @@ function clearBoxes() {
   }
   moneskoRuutu = 0;
   moneskoRivi = 0;
+  highlightCurrentBox();
 }
 
 function initBoard() {
@@ -339,7 +340,7 @@ span.onclick = function() {
 
 
   document.getElementById("tarkista-btn").addEventListener("click", checkWords);
-  document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
+  document.getElementById("puhdista-btn").addEventListener("click", loadWords);
 
 async function init() {
     ratkaistu = false;
