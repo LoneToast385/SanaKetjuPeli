@@ -128,7 +128,7 @@ nav {
   flex-direction: column;
 }
 
-.tarkista-btn {
+#tarkista-btn {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
@@ -151,7 +151,7 @@ nav {
     transform: scale(0.98); /* Shrink a bit on click */
 }
 
-.puhdista-btn {
+#puhdista-btn {
   display: block;
   margin: 0 auto;
   padding: 10px 20px;
