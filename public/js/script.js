@@ -91,9 +91,9 @@ const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&
 
 function clearBoxes() {
   for (let i = 0; i < TASO - 2; i++) {
-    let letter_row = document.getElementById("letter-row")[i];
+    let row = document.getElementById("letter-row")[i];
     for (let j = 0; j < 5; j++) {
-      let boksi = letter_row[i].children[j];
+      let boksi = row.children[j];
       boksi.textContent = "";
       boksi.classList.remove("filled-box");
       boksi.classList.remove("incorrect-box");
