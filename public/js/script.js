@@ -90,7 +90,7 @@ let moneskoRuutu = 0;
 const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
 
 function clearBoxes() {
-  for (let i = 0; i < TASO - 2; i++) {
+  for (let i = 0; i < TASO - 1; i++) {
     let row = document.getElementsByClassName("letter-row")[i];
     for (let j = 0; j < 5; j++) {
       let boksi = row.children[j];
