@@ -1,6 +1,6 @@
 let WORDS = new Set();
 let maksimi_etäisyydet = {};
-let TASO = 3;
+let TASO = 4;
 let aloitussana;
 let lopetussana;
 let ratkaistu;
