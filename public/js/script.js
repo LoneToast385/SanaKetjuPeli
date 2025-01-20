@@ -20,6 +20,7 @@ async function sanat() {
   } catch (error) {
         console.error("Error loading words:", error);
   }
+};
 
 async function loadWords() {
     try {
@@ -42,16 +43,17 @@ async function loadWords() {
 
               const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
               let tempValue = await fetchWordFromApi(url)
+            
               if(tempValue == 1 && typeof lopetussana !== "undefined") {
                 successfulReturn = true;
               } else {
                 continue
               }
           }
-  } catch (error) {
+    } catch (error) {
       console.error("Unexpected data structure:", data);
-  }
-}
+    };
+};
 
 async function fetchWordFromApi(url) {
     try {
@@ -76,7 +78,7 @@ async function fetchWordFromApi(url) {
             }
             return 0;
         }
-} catch (error) {
+    } catch (error) {
         console.error("Error fetching lopetussana:", error);
     }
 }
@@ -344,16 +346,17 @@ function checkWords() {
     ilmoitusTausta.style.display = "block";
   }
 }
+
 span.onclick = function() {
   ilmoitusTausta.style.display = "none";
 }
 
 
-  document.getElementById("tarkista-btn").addEventListener("click", checkWords);
-  document.getElementById("puhdista-btn").addEventListener("click", async () => {
-    await loadWords();
-    clearBoxes();
-  });
+document.getElementById("tarkista-btn").addEventListener("click", checkWords);
+document.getElementById("puhdista-btn").addEventListener("click", async () => {
+  await loadWords();
+  clearBoxes();
+});
 
 async function init() {
     ratkaistu = false;
@@ -362,5 +365,5 @@ async function init() {
     initBoard();
     highlightCurrentBox();
 }
+
 init();
-console.log(apiUrl);
