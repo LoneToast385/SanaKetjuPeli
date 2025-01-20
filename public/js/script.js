@@ -98,7 +98,7 @@ function clearBoxes() {
   
   let destination_row = document.getElementsByClassName("destination-row")[0];
   for (let l = 0; l < 5; l++) {
-      let boksi = starting_row.children[l];
+      let boksi = destination_row.children[l];
       boksi.textContent = lopetussana[l];
   }
   
