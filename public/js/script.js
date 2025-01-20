@@ -90,6 +90,18 @@ let moneskoRuutu = 0;
 const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
 
 function clearBoxes() {
+  let starting_row = document.getElementsByClassName("starting-row")[0];
+  for (let s = 0; s < 5; s++) {
+      let boksi = starting_row.children[s];
+      boksi.textContent = aloitussana[s];
+  }
+  
+  let destination_row = document.getElementsByClassName("destination-row")[0];
+  for (let l = 0; l < 5; l++) {
+      let boksi = starting_row.children[l];
+      boksi.textContent = lopetussana[l];
+  }
+  
   for (let i = 0; i < TASO - 1; i++) {
     let row = document.getElementsByClassName("letter-row")[i];
     for (let j = 0; j < 5; j++) {
@@ -340,7 +352,7 @@ span.onclick = function() {
 
 
   document.getElementById("tarkista-btn").addEventListener("click", checkWords);
-  document.getElementById("puhdista-btn").addEventListener("click", loadWords);
+  document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
 
 async function init() {
     ratkaistu = false;
