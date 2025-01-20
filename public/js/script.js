@@ -48,7 +48,7 @@ async function loadWords() {
                 continue
               }
           }
-  } else {
+  } catch (error) {
       console.error("Unexpected data structure:", data);
   }
 }
