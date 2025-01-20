@@ -141,12 +141,12 @@ nav {
   cursor: pointer;
 }
 
-.tarkista-btn:hover {
+#tarkista-btn:hover {
     background-color: #45a049; /* Slightly darker green */
     transform: scale(1.05); /* Slightly larger when hovered */
 }
 
-.tarkista-btn:active {
+#tarkista-btn:active {
     background-color: #3e8e41; /* Darker when pressed */
     transform: scale(0.98); /* Shrink a bit on click */
 }
@@ -164,12 +164,12 @@ nav {
   cursor: pointer;
 }
 
-.puhdista-btn:hover {
+#puhdista-btn:hover {
     background-color: #AA4A44; /* Slightly darker green */
     transform: scale(1.05); /* Slightly larger when hovered */
 }
 
-.puhdista-btn:active {
+#puhdista-btn:active {
     background-color: #880808; 
     transform: scale(0.98); 
 }
