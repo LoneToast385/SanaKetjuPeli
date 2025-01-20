@@ -146,6 +146,30 @@ nav {
     background-color: #3e8e41; /* Darker when pressed */
     transform: scale(0.98); /* Shrink a bit on click */
 }
+
+#puhdista-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #EE4B2B; /* Example background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#puhdista-btn:hover {
+    background-color: #AA4A44; /* Slightly darker green */
+    transform: scale(1.05); /* Slightly larger when hovered */
+}
+
+#puhdista-btn:active {
+    background-color: #880808; 
+    transform: scale(0.98); 
+}
+
 .ilmoitusTausta {
   display: none;
   position: fixed;
