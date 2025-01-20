@@ -353,7 +353,7 @@ span.onclick = function() {
 
 
 document.getElementById("tarkista-btn").addEventListener("click", checkWords);
-document.getElementById("tarkista-btn").addEventListener("click", clearBoxes);
+document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
 document.getElementById("uusi-btn").addEventListener("click", async () => {
   await loadWords();
   clearBoxes();
