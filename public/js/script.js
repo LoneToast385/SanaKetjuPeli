@@ -90,10 +90,10 @@ let moneskoRuutu = 0;
 const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
 
 function clearBoxes() {
-  let letter_rows = document.getElementById("letter-row");
-  for (let i = 0; i < letter_rows.length; i++) {
-    for (let j = 0; j < letter_rows[i].children.length; j++) {
-      let boksi = letter_rows[i].children[j];
+  for (let i = 0; i < TASO - 2; i++) {
+    let letter_row = document.getElementById("letter-row")[i];
+    for (let j = 0; j < 5; j++) {
+      let boksi = letter_row[i].children[j];
       boksi.textContent = "";
       boksi.classList.remove("filled-box");
       boksi.classList.remove("incorrect-box");
