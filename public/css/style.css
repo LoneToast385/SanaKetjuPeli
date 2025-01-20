@@ -157,7 +157,7 @@ nav {
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
-  background-color: #EE4B2B; /* Example background color */
+  background-color: #FFEA00; /* Example background color */
   color: white; /* Text color */
   border: none;
   border-radius: 5px;
@@ -165,11 +165,34 @@ nav {
 }
 
 #puhdista-btn:hover {
-    background-color: #AA4A44; /* Slightly darker green */
+    background-color: #FDDA0D; /* Slightly darker green */
     transform: scale(1.05); /* Slightly larger when hovered */
 }
 
 #puhdista-btn:active {
+    background-color: #FFBF00; 
+    transform: scale(0.98); 
+}
+
+#uusi-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #EE4B2B; /* Example background color */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#uusi-btn:hover {
+    background-color: #AA4A44; /* Slightly darker green */
+    transform: scale(1.05); /* Slightly larger when hovered */
+}
+
+#uusi-btn:active {
     background-color: #880808; 
     transform: scale(0.98); 
 }
