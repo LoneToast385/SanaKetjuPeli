@@ -123,6 +123,10 @@ nav {
   border: 2px solid #FFD700; /* Gold border or any color you prefer */
   background-color: #FFFACD; /* Light yellow background */
 }
+#napit {
+  align-items: center;
+  flex-direction: column;
+}
 
 #tarkista-btn {
   display: block;
