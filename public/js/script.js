@@ -1,5 +1,5 @@
 let WORDS = new Set(); // Initialize as a Set
-let TASO;
+let TASO = 3;
 let aloitussana;
 let lopetussana;
 let ratkaistu;
@@ -16,9 +16,6 @@ async function loadWords() {
         if (Array.isArray(data)) {
             data.forEach(word => WORDS.add(word));
             console.log("Words loaded:", WORDS);
-
-            // Randomly select TASO and aloitussana after words are loaded
-            TASO = 5;
             let vastaus = await fetch("/api/sanat?filtteri=aloitussana");
             const aloitussanat = await vastaus.json();
 
