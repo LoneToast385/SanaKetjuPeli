@@ -58,6 +58,14 @@ nav {
   padding-bottom: 15 px;
 }
 
+#taso-vaihtoehdot {
+  display: grid;
+  flex-direction: column;
+}
+
+.vaihtoehto-rivi {
+  display: flex;
+}
 .hidden-settings .tilan-valinta {
   padding-left: 20px;
   justify-content: center;
@@ -65,7 +73,7 @@ nav {
   padding-bottom: 15 px;
 }
 
-.hidden-setting .switch {
+.hidden-settings .switch {
   position: relative;
   display: inline-block;
   width: 60px;
