@@ -17,14 +17,28 @@ async function taso_vaihtoehdot() {
             vaihtoehdot.push(Number(key));
         };
     });
+
+    let rivi = document.createElement("div");
+    rivi.className = "vaihtoehto-rivi";
+  
+    let rivin_pituus = 0;
   
     for (let i = 0; i < vaihtoehdot.length; i++) {
       let taso_vaihtoehto = document.createElement("div");
       taso_vaihtoehto.className = "taso-vaihtoehto";
       taso_vaihtoehto.classList.add("letter-box");
       taso_vaihtoehto.textContent = vaihtoehdot[i];
-      vaihtoehtoalusta.appendChild(taso_vaihtoehto);
+      rivi.appendChild(taso_vaihtoehto);
+      rivin_pituus++;
+      if (rivin_pituus == 5) {
+        vaihtoehtoalusta.appendChild(rivi);
+        rivi = document.createElement("div");
+        rivi.className = "vaihtoehto-rivi";
+        rivin_pituus = 0;
+      }
     }
+  rivi.className = "vaihtoehto-rivi";
+  vaihtoehtoalusta.appendChild(rivi)
 }
   
 async function sanat() {
