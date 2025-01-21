@@ -9,6 +9,23 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+async function taso_vaihtoehdot {
+    let vaihtoehdot = [];
+    let vaihtoehtoalusta = document.getElementsById("taso-vaihtoehdot")[0];
+    Object.keys(maksimi_etäisyydet).map((key, index) => {
+        if (key > 1) {
+            vaihtoehdot.push(Number(key));
+        };
+    });
+  
+    for (let i = 0; i < vaihtoehdot.length; i++) {
+      taso-vaihtoehto = document.createElement("div");
+      taso-vaihtoehto.className = "taso-vaihtoehto";
+      taso-vaihtoehto.textContent = vaihtoehdot[i];
+      vaihtoehtoalusta.appendChild(taso-vaihtoehto);
+    }
+}
+  
 async function sanat() {
   try {
     const response = await fetch("/api/sanat");
@@ -371,6 +388,7 @@ async function init() {
     await loadWords();
     initBoard();
     highlightCurrentBox();
+    await taso_vaihtoehdot();
 }
 
 init();
