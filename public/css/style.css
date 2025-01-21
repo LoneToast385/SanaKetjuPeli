@@ -46,6 +46,8 @@ nav {
   overflow: hidden;
   justify-content: space-between;
   padding-top: 15px;
+  padding-right: 50px;
+  padding-left: 50px;
   padding-bottom: 15px;
 }
 
