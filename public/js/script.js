@@ -389,6 +389,7 @@ async function init() {
     initBoard();
     highlightCurrentBox();
     await taso_vaihtoehdot();
+    asetukset.classList.add("hide");
 }
 
 init();
