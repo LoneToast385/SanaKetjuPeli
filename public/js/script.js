@@ -19,7 +19,7 @@ async function taso_vaihtoehdot() {
         };
     });
 
-    for (let j = 2; j < suurin; j++) {
+    for (let j = 2; j <= suurin; j++) {
       vaihtoehdot.push(j);
     }
     let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
