@@ -353,14 +353,20 @@ span.onclick = function() {
 
 
 document.getElementById("tarkista-btn").addEventListener("click", checkWords);
+
 document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
+
 document.getElementById("uusi-btn").addEventListener("click", async () => {
+  let asetukset = document.getElementsByClassName("hidden-settings")[0]
+  asetukset.classList.add("hide");
   await loadWords();
   clearBoxes();
 });
 
 async function init() {
     ratkaistu = false;
+    let asetukset = document.getElementsByClassName("hidden-settings")[0]
+    asetukset.classList.add("hide");
     await sanat();
     await loadWords();
     initBoard();
