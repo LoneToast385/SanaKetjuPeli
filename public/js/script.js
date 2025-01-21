@@ -21,6 +21,7 @@ async function taso_vaihtoehdot() {
     for (let i = 0; i < vaihtoehdot.length; i++) {
       let taso_vaihtoehto = document.createElement("div");
       taso_vaihtoehto.className = "taso-vaihtoehto";
+      taso_vaihtoehto.classList.add("letter-box");
       taso_vaihtoehto.textContent = vaihtoehdot[i];
       vaihtoehtoalusta.appendChild(taso_vaihtoehto);
     }
