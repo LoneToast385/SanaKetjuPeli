@@ -19,10 +19,10 @@ async function taso_vaihtoehdot() {
     });
   
     for (let i = 0; i < vaihtoehdot.length; i++) {
-      taso-vaihtoehto = document.createElement("div");
-      taso-vaihtoehto.className = "taso-vaihtoehto";
-      taso-vaihtoehto.textContent = vaihtoehdot[i];
-      vaihtoehtoalusta.appendChild(taso-vaihtoehto);
+      let taso_vaihtoehto = document.createElement("div");
+      taso_vaihtoehto.className = "taso-vaihtoehto";
+      taso_vaihtoehto.textContent = vaihtoehdot[i];
+      vaihtoehtoalusta.appendChild(taso_vaihtoehto);
     }
 }
   
