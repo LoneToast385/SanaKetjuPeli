@@ -11,13 +11,18 @@ function randomIntFromInterval(min, max) { // min and max included
 
 async function taso_vaihtoehdot() {
     let vaihtoehdot = [];
-    let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
+    let suurin = 0;
+    
     Object.keys(maksimi_etäisyydet).map((key, index) => {
-        if (key > 1) {
-            vaihtoehdot.push(Number(key));
+        if (key > suurin) {
+            suurin = Number(key);
         };
     });
 
+    for (let j = 2; j < suurin; j++) {
+      vaihtoehdot.push(j);
+    }
+    let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
     let rivi = document.createElement("div");
     rivi.className = "vaihtoehto-rivi";
   
