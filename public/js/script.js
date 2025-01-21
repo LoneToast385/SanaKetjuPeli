@@ -9,7 +9,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-async function taso_vaihtoehdot {
+async function taso_vaihtoehdot() {
     let vaihtoehdot = [];
     let vaihtoehtoalusta = document.getElementsById("taso-vaihtoehdot")[0];
     Object.keys(maksimi_etäisyydet).map((key, index) => {
@@ -389,7 +389,6 @@ async function init() {
     initBoard();
     highlightCurrentBox();
     await taso_vaihtoehdot();
-    asetukset.classList.add("hide");
 }
 
 init();
