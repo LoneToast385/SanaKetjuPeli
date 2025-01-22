@@ -1,9 +1,14 @@
 let WORDS = new Set();
 let maksimi_etäisyydet = {};
+
 let TASO = 4;
+
 let aloitussana;
 let lopetussana;
+
 let ratkaistu;
+
+let HARDMODE = false;
 
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min);
