@@ -145,17 +145,20 @@ input:checked + .slider:before {
 }
 
 .content {
+  display:flex;
   width: 100%;
   height: 100vh;
   margin-top:40px;
+  align-items:center;
+  flex-direction: column;
 }
 
 
 #game-board {
   padding-top: 1rem;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 
 .letter-box {
@@ -211,10 +214,10 @@ input:checked + .slider:before {
 }
 
 #keyboard-cont {
-  margin: 1rem 0;
+  padding-top: 1rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
 
 #keyboard-cont div {
@@ -239,13 +242,11 @@ input:checked + .slider:before {
   background-color: #FFFACD; /* Light yellow background */
 }
 #napit {
-  align-items: center;
-  flex-direction: column;
+  display: flex;
 }
 
 #tarkista-btn {
-  display: block;
-  margin: 0 auto;
+  margin-top: 10px;
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
@@ -267,8 +268,7 @@ input:checked + .slider:before {
 }
 
 #puhdista-btn {
-  display: block;
-  margin: 0 auto;
+  margin-top: 10px;
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
@@ -290,8 +290,6 @@ input:checked + .slider:before {
 }
 
 #uusi-btn {
-  display: block;
-  margin: 0 auto;
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
