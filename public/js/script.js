@@ -187,7 +187,9 @@ function highlightCurrentBox() {
       let row = allLetterRows[i];
       const allBoxes = row.children;
       console.log(allBoxes)
-      allBoxes.forEach((box) => box.classList.remove("selected-box"));
+      for (let j = 0; j < allBoxes.length; j++) {
+         allBoxes[j].classList.remove("selected-box")
+      }
   }
   const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
   const currentBox = currentRow.children[moneskoRuutu];
