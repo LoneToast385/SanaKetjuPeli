@@ -105,8 +105,8 @@ async function fetchWordFromApi(url) {
         const data = await response.json();
         let mahdolliset_lopetussanat = [];
 
-        if (!HARDMODE) {
-          for (let i = 0; i < data[Number(TASO)]; i++) {
+        if (!(HARDMODE)) {
+          for (let i = 0; i < data[Number(TASO)].length; i++) {
             let sana = data[Number(TASO)][i]
             let differences = 0;
             for (let j = 0; j < 5; j++) {
