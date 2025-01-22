@@ -424,7 +424,7 @@ document.getElementById("aseta-uudet-asetukset-btn").addEventListener("click", (
   } else {
     HARDMODE = false;
   }
-);
+});
 
 
 document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
