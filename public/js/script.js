@@ -181,9 +181,10 @@ function initBoard() {
 
 
 function highlightCurrentBox() {
-  const allBoxes = document.querySelectorAll(".letter-box");
-  allBoxes.forEach((box) => box.classList.remove("selected-box"));
-
+  const allLetterRows = document.querySelectorAll(".letter-row");
+  for (let i = 0; i < allLetterRows.length; i++) {
+      allLetterRows[i].children.forEach((box) => box.classList.remove("selected-box"));
+  }
   const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
   const currentBox = currentRow.children[moneskoRuutu];
   currentBox.classList.add("selected-box");
