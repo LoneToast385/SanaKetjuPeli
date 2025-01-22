@@ -183,8 +183,8 @@ function initBoard() {
 function highlightCurrentBox() {
   const allLetterRows = document.querySelectorAll(".letter-row");
   for (let i = 0; i < allLetterRows.length; i++) {
-      let allBoxes = allLetterRows[i].children;
-      console.log(allBoxes)
+      let row = allLetterRows[i];
+      let allBoxes = row.children;
       allBoxes.forEach((box) => box.classList.remove("selected-box"));
   }
   const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
