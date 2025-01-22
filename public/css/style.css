@@ -241,26 +241,20 @@ input:checked + .slider:before {
   border: 2px solid #FFD700; /* Gold border or any color you prefer */
   background-color: #FFFACD; /* Light yellow background */
 }
-
 #napit {
   display: flex;
-
-
-.nappi {
-  
 }
 
 #tarkista-btn {
   margin-top: 10px;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  
   padding: 10px 20px;
+  text-align: center;
   font-size: 18px;
   background-color: #4CAF50; /* Example background color */
   color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #tarkista-btn:hover {
@@ -275,15 +269,14 @@ input:checked + .slider:before {
 
 #puhdista-btn {
   margin-top: 10px;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  
   padding: 10px 20px;
+  text-align: center;
   font-size: 18px;
   background-color: #FFEA00; /* Example background color */
   color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #puhdista-btn:hover {
@@ -298,15 +291,14 @@ input:checked + .slider:before {
 
 #uusi-btn {
   margin-top: 10px;
-  text-align: center;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  
   padding: 10px 20px;
+  text-align: center;
   font-size: 18px;
   background-color: #EE4B2B; /* Example background color */
   color: white; /* Text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #uusi-btn:hover {
