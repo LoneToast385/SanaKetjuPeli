@@ -182,6 +182,7 @@ function initBoard() {
 
 function highlightCurrentBox() {
   const allLetterRows = document.querySelectorAll(".letter-row");
+  console.log(allLetterRows)
   for (let i = 0; i < allLetterRows.length; i++) {
       let row = allLetterRows[i];
       const allBoxes = row.children;
