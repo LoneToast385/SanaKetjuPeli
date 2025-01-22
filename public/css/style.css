@@ -63,6 +63,7 @@ nav {
 }
 
 #taso-vaihtoehdot {
+  padding-left: 5px;
   display: grid;
   flex-direction: column;
 }
