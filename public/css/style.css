@@ -290,6 +290,7 @@ input:checked + .slider:before {
 }
 
 #uusi-btn {
+  margin-top: 10px;
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
