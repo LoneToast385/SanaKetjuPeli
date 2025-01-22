@@ -108,7 +108,7 @@ async function fetchWordFromApi(url) {
         mahdolliset_lopetussanat = data[Number(TASO)];
         
         if (mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)] != "") {
-            let lopetussana = mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
+            lopetussana = mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
             return 1
         } else {
             return 0;
