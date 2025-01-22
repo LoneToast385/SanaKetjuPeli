@@ -418,6 +418,15 @@ span.onclick = function() {
 
 document.getElementById("tarkista-btn").addEventListener("click", checkWords);
 
+document.getElementById("aseta-uudet-asetukset-btn").addEventListener("click", () => {
+  if (document.getElementById("vaikeampi-tila-switch").checked) {
+    HARDMODE = true;
+  } else {
+    HARDMODE = false;
+  }
+);
+
+
 document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
 
 document.getElementById("uusi-btn").addEventListener("click", async () => {
