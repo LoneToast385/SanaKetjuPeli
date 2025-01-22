@@ -101,23 +101,25 @@ async function fetchWordFromApi(url) {
     try {
         const response = await fetch(url);
         const data = await response.json();
-        if (data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)] != "") {
-            lopetussana = data[Number(TASO)][Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
-            return 1
+        let mahdolliset_lopetussanat = [];
+
+        if (!HARDMODE) {
+          for (let i = 0; i < data[Number(TASO)]; i++) {
+            let sana = data[Number(TASO)][i]
+            let differences = 0;
+            for (let j = 0; j < 5; j++) {
+              if (aloitussana[j] != sana[j]) differences++;
+            }
+            if (differences == TASO) mahdolliset_lopetussanat.push(sana)
+          }
+        } else {
+          mahdolliset_lopetussanat = data[Number(TASO)];
         }
-        else {
-            for(let n; n <= 3; n++) {
-                if (data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)] != "") {
-                    lopetussana = data[Number(TASO - n)][Math.floor(Math.random() * data[TASO - n].length)];
-                    return 1;
-                }
-            }
-            for(let n; n <= 3; n++) {
-                if (data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)] != "") {
-                    lopetussana = data[Number(TASO + n)][Math.floor(Math.random() * data[TASO + n].length)];
-                    return 1;
-                } 
-            }
+        
+        if (mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)] != "") {
+            let lopetussana = mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
+            return 1
+        } else {
             return 0;
         }
     } catch (error) {
