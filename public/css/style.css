@@ -56,10 +56,10 @@ nav {
 }
 
 .hidden-settings .tason-valinta {
-  display:flex;
-  padding-left: 20px;
-  align-items: center;
-  padding-bottom: 15 px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #taso-vaihtoehdot {
@@ -72,26 +72,14 @@ nav {
 }
 
 .hidden-settings .tilan-valinta {
-  display:flex;
-  padding-left: 20px;
-  align-items: center;
-  padding-bottom: 15 px;
-}
-
-.hidden-settings .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.hidden-settings .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
+  display: flex;
+  padding-top: 10px;
+  padding-bottom: 10 px;
+  justify-content: space-between;
 }
 
 .switch {
+  float: left;
   position: relative;
   display: inline-block;
   width: 60px;
@@ -375,4 +363,5 @@ input:checked + .slider:before {
   text-decoration: none;
   cursor: pointer;
 }
+
 
