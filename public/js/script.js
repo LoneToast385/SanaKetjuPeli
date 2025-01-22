@@ -65,6 +65,7 @@ async function sanat() {
 };
 
 async function loadWords() {
+  if (TASO > 5) HARDMODE = true;
     try {
         let käytettävät_sanat = [];
           Object.keys(maksimi_etäisyydet).map((key, index) => {
