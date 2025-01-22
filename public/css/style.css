@@ -247,14 +247,16 @@ input:checked + .slider:before {
 
 
 .nappi {
+  
+}
+
+#tarkista-btn {
   margin-top: 10px;
   text-align: center;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-#tarkista-btn {
+  
   padding: 10px 20px;
   font-size: 18px;
   background-color: #4CAF50; /* Example background color */
@@ -272,6 +274,12 @@ input:checked + .slider:before {
 }
 
 #puhdista-btn {
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
   padding: 10px 20px;
   font-size: 18px;
   background-color: #FFEA00; /* Example background color */
@@ -289,6 +297,12 @@ input:checked + .slider:before {
 }
 
 #uusi-btn {
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  
   padding: 10px 20px;
   font-size: 18px;
   background-color: #EE4B2B; /* Example background color */
