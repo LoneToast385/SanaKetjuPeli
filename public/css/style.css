@@ -79,6 +79,12 @@ nav {
   justify-content: space-between;
 }
 
+.main-title {
+  font-size:20px;
+  font-style: bold;
+  padding-bottom: 3px;
+}
+
 .switch {
   float: left;
   position: relative;
