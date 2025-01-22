@@ -81,6 +81,7 @@ async function loadWords() {
           while (!successfulReturn && käytettävät_sanat.length > 0) {
               sana_index = randomIntFromInterval(0, käytettävät_sanat.length - 1)
               aloitussana = käytettävät_sanat[sana_index];
+              console.log(aloitussana)
               käytettävät_sanat.splice(sana_index, 1);
 
               const url = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
@@ -108,6 +109,7 @@ async function fetchWordFromApi(url) {
             let sana = data[Number(TASO)][i]
             let differences = 0;
             for (let j = 0; j < 5; j++) {
+              console.log(differences, aloitussana, sana);
               if (aloitussana[j] != sana[j]) differences++;
             }
             if (differences == TASO) mahdolliset_lopetussanat.push(sana)
