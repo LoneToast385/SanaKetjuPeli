@@ -105,7 +105,19 @@ async function fetchWordFromApi(url) {
         const data = await response.json();
         let mahdolliset_lopetussanat = [];
 
-        mahdolliset_lopetussanat = data[Number(TASO)];
+        if (!(HARDMODE)) {
+          for (let i = 0; i < data[Number(TASO)].length; i++) {
+            let sana = data[Number(TASO)][i]
+            let differences = 0;
+            for (let j = 0; j < 5; j++) {
+              console.log(differences, aloitussana, sana);
+              if (aloitussana[j] !== sana[j]) differences++;
+            }
+            if (differences == TASO) mahdolliset_lopetussanat.push(sana)
+          }
+        } else {
+          mahdolliset_lopetussanat = data[Number(TASO)];
+        }
         
         if (mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)] != "") {
             lopetussana = mahdolliset_lopetussanat[Math.floor(Math.random() * data[TASO].length)]; // Randomly pick from the response
