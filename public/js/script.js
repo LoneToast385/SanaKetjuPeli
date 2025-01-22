@@ -230,6 +230,16 @@ function insertLetter(pressedKey) {
       moneskoRuutu += 1;
     }
   }
+  let rows = document.getElementsByClassName("letter-row");
+  let guesses = [];
+  for (let i = 0; i < TASO - 1; i++) {
+    let row = rows[i];
+    let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
+    if(word.length == 5) 
+      guesses.push(word);
+  }
+  if(guesses.length == TASO - 1)
+    checkWords();
 }
 
 function areGuessesLegal() {
