@@ -111,7 +111,7 @@ async function fetchWordFromApi(url) {
             let differences = 0;
             for (let j = 0; j < 5; j++) {
               console.log(differences, aloitussana, sana);
-              if (aloitussana[j] != sana[j]) differences++;
+              if (aloitussana[j] !== sana[j]) differences++;
             }
             if (differences == TASO) mahdolliset_lopetussanat.push(sana)
           }
