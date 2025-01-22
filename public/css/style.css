@@ -244,6 +244,29 @@ input:checked + .slider:before {
 #napit {
   display: flex;
 }
+#aseta-uudet-asetukset-btn {
+  float:right;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  text-align: center;
+  font-size: 18px;
+  background-color: #78ffa4; /* Example background color */
+  color: white; /* Text color */
+  border-color: #257bc5;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#aseta-uudet-asetukset-btn:hover {
+    background-color: #45a049; /* Slightly darker green */
+    transform: scale(1.05); /* Slightly larger when hovered */
+}
+
+#aseta-uudet-asetukset-btn:active {
+    background-color: #3e8e41; /* Darker when pressed */
+    transform: scale(0.98); /* Shrink a bit on click */
+}
 
 #tarkista-btn {
   margin-top: 10px;
