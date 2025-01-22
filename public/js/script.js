@@ -167,11 +167,13 @@ function initBoard() {
       box.textContent = i === 0 ? aloitussana[j] : i === TASO ? lopetussana[j] : "";
       row.appendChild(box);
 
-      box.addEventListener('click', () => {
-        moneskoRivi = i - 1; 
-        moneskoRuutu = j; 
-        highlightCurrentBox(); 
-      });
+      if (row.className != "starting-row" && row.className != "destination-row") {
+        box.addEventListener('click', () => {
+          moneskoRivi = i - 1; 
+          moneskoRuutu = j; 
+          highlightCurrentBox(); 
+        });
+      }
     }
     board.appendChild(row);
   }
