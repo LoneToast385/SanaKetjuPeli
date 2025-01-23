@@ -124,17 +124,17 @@ async function loadWords() {
 
 function näytäViereiset() {
   let valinnat = 0
-  for (let i = 0; i < 4; i++) {
+  for (let i = 1; i < 5; i++) {
     
     let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
     if (row) {
-      row.style.display = valinnat < 4 ? "flex" : "none";
+      row.style.display = valinnat < 5 ? "flex" : "none";
       valinnat++;
     }
     
     row = document.getElementsByClassName("letter-row")[moneskoRivi+i]
     if (row) {
-      row.style.display = valinnat < 4 ? "flex" : "none";
+      row.style.display = valinnat < 5 ? "flex" : "none";
       valinnat++;
     }
   }
