@@ -124,7 +124,7 @@ async function loadWords() {
 
 function näytäViereiset() {
   let valinnat = 0
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < TASO - 1; i++) {
     
     let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
     if (row) {
