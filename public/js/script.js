@@ -251,6 +251,12 @@ function highlightCurrentBox() {
   currentBox.classList.remove("correct-box");
 }
 
+function näytäKokoLauta() {
+  for (let i = 0; i < TASO - 1; i++) {
+    let row = document.getElementsByClassName("letter-row")[i]
+    row.style.display = "flex";
+  }
+}
 
 function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
@@ -311,6 +317,8 @@ function insertLetter(pressedKey) {
 }
 
 function areGuessesLegal() {
+  näytäKokoLauta();
+  
   let rows = document.getElementsByClassName("letter-row");
   let guesses = [];
   let virheet = [];
