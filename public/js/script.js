@@ -444,6 +444,7 @@ span.onclick = function() {
 document.getElementById("tarkista-btn").addEventListener("click", checkWords);
 
 document.getElementById("aseta-uudet-asetukset-btn").addEventListener("click", () => {
+  console.log(uusi_taso)
   if (uusi_taso && uusi_taso != TASO) TASO = uusi_taso;
   if (document.getElementById("vaikeampi-tila-switch").checked) {
     HARDMODE = true;
