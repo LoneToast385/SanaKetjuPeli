@@ -47,7 +47,7 @@ async function taso_vaihtoehdot() {
     let rivejä = 5;
     let laatikoita = 5;
   
-    for (let i = 0; i < rivejä, i++) {
+    for (let i = 0; i < rivejä; i++) {
       let rivi = document.createElement("div");
       rivi.className = "vaihtoehto-rivi";
 
