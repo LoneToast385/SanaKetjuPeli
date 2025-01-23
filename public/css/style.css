@@ -336,7 +336,7 @@ input:checked + .slider:before {
 
 .ilmoitusTausta {
   display: none;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   padding-top: 100px;
   left: 0;
@@ -369,13 +369,6 @@ input:checked + .slider:before {
   color: #000;
   text-decoration: none;
   cursor: pointer;
-}
-
-#voittoAnim {
-  width: 400px;
-  height: 400px;
-  position: relative;
-  background: yellow;
 }
 
 
