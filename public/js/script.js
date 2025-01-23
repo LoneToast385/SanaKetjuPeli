@@ -133,7 +133,7 @@ function näytäViereiset() {
         row.style.animationName = "fade-in";
       } else if (valinnat >= 3 && row.style.display != "none") {
         row.style.animationName = "fade-out";
-        setTimeout(row.style.display = "none", 1000);
+        row.style.display = "none"
       }
       valinnat++;
     }
