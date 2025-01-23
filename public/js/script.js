@@ -194,8 +194,8 @@ function initBoard() {
   let board = document.getElementById("game-board");
   for (let i = 0; i <= TASO; i++) {
     let row = document.createElement("div");
-    row.className = i === 0 ? "starting-row" : i === TASO ? "destination-row" : "letter-row";
-    if (i > 4) row.style.display = none;
+    row.className = i === 0 ? "starting-row" : i === TASO ? "destination-row" : "hidden-row";
+    if (TASO < 5) row.classList.add("letter-row");
 
     for (let j = 0; j < 5; j++) {
       let box = document.createElement("div");
