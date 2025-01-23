@@ -227,7 +227,7 @@ function highlightCurrentBox() {
   const currentRow = document.getElementsByClassName("letter-row")[moneskoRivi];
   const currentBox = currentRow.children[moneskoRuutu];
   currentBox.classList.add("selected-box");
-  currentBox.classList.remove("incorrect-box);
+  currentBox.classList.remove("incorrect-box");
   currentBox.classList.remove("correct-box");
 }
 
