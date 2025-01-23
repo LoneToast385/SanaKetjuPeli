@@ -49,6 +49,7 @@ async function taso_vaihtoehdot() {
     
     let rivin_pituus = 0;
     let rivi_num = 0;
+    let nykyinen_laatikko = 0;
   
     for (let i = 0; i < vaihtoehdot.length; i++) {
       let taso_vaihtoehto = document.createElement("div");
@@ -58,7 +59,7 @@ async function taso_vaihtoehdot() {
       taso_vaihtoehto.textContent = vaihtoehdot[i];
       taso_vaihtoehto.addEventListener('click', () => {
           let y = rivi_num;
-          let x = i;
+          let x = rivin_pituus;
           korostaTasovalinta(x, y);
       });
       rivi.appendChild(taso_vaihtoehto);
