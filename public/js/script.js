@@ -128,13 +128,13 @@ function näytäViereiset() {
     
     let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
     if (row) {
-      row.style.display = valinnat < 5 ? "flex" : "none";
+      row.style.display = valinnat < 4 ? "flex" : "none";
       valinnat++;
     }
     
     row = document.getElementsByClassName("letter-row")[moneskoRivi+i]
     if (row) {
-      row.style.display = valinnat < 5 ? "flex" : "none";
+      row.style.display = valinnat < 4 ? "flex" : "none";
       valinnat++;
     }
   }
