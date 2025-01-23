@@ -475,7 +475,6 @@ document.getElementById("uusi-btn").addEventListener("click", async () => {
 });
 
 async function init() {
-    ratkaistu = false;
     let asetukset = document.getElementsByClassName("hidden-settings")[0]
     asetukset.classList.add("hide");
     await sanat();
