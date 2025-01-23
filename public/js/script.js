@@ -409,9 +409,9 @@ function checkWords() {
     ratkaistu = true
     ilmoitusTausta.style.display = "block";
     for(let i; i <= 100; i++)
-      ilmoitusTausta.style.opacity == i;
+      ilmoitusTausta.style.opacity = i;
     for(let m = 100; m > 0; m--)
-      ilmoitusTausta.style.opacity == m;
+      ilmoitusTausta.style.opacity = m;
     ilmoitusTausta.style.display = "none";
   }
 }
