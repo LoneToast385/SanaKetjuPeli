@@ -130,9 +130,7 @@ function näytäViereiset() {
     if (row) {
       if (valinnat < 3 && row.style.display != "flex") {
         row.style.display = "flex";
-        row.style.animationName = "fade-in";
       } else if (valinnat >= 3 && row.style.display != "none") {
-        row.style.animationName = "fade-out";
         row.style.display = "none";
       }
       valinnat++;
@@ -142,10 +140,7 @@ function näytäViereiset() {
     if (row) {
       if (valinnat < 3 && row.style.display != "flex") {
         row.style.display = "flex";
-        row.style.animationName = "fade-in";
-        row.style.animationPlayState = "running"
       } else if (valinnat >= 3 && row.style.display != "none") {
-        row.style.animationName = "fade-out";
         row.style.display = "none";
       }
       valinnat++;
