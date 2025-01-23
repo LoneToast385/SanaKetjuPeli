@@ -28,7 +28,7 @@ function korostaTasovalinta(x, y) {
   const valinnanRivi= document.getElementsByClassName("vaihtoehto-rivi")[y];
   const valinnanLaatikko = valinnanRivi.children[x];
   valinnanLaatikko.classList.add("selected-box");
-  if (valinnanLaatikko.textContent != TASO) uusi_taso = Number(valinnnanLaatikko.textContent);
+  if (valinnanLaatikko.textContent != TASO) uusi_taso = Number(valinnanLaatikko.textContent);
 }
   
 async function taso_vaihtoehdot() {
