@@ -56,14 +56,13 @@ nav {
 }
 
 .hidden-settings .tason-valinta {
-  display: flex;
   justify-content: space-between;
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
 #taso-vaihtoehdot {
-  padding-left: 5px;
+  padding-top: 10px;
   display: grid;
   flex-direction: column;
 }
