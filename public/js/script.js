@@ -122,7 +122,7 @@ async function loadWords() {
     };
 };
 
-function näytä_viereiset() {
+function näytäViereiset() {
   let valinnat = 0
   for (let i = 0; i < 4; i++) {
     
@@ -225,7 +225,8 @@ function initBoard() {
         box.addEventListener('click', () => {
           moneskoRivi = i - 1; 
           moneskoRuutu = j; 
-          highlightCurrentBox(); 
+          highlightCurrentBox();
+          if (TASO > 4) näytäViereiset();
         });
       }
     }
@@ -264,6 +265,7 @@ function deleteLetter() {
         if (moneskoRivi != 0) {
           moneskoRuutu = 4;
           moneskoRivi -= 1;
+          if (TASO > 4) näytäViereiset();
         }
       } else {
         let box_before = row.children[moneskoRuutu - 1];
@@ -387,7 +389,8 @@ document.addEventListener("keyup", (e) => {
   if (pressedKey === "Enter" && moneskoRivi < TASO) {
     moneskoRuutu = 0;
     if(moneskoRivi != TASO - 2) {
-        moneskoRivi++;
+      moneskoRivi++;
+      if (TASO > 4) näytäViereiset();
     }
     highlightCurrentBox(); // Update highlight
     return;
@@ -398,6 +401,7 @@ document.addEventListener("keyup", (e) => {
     if (moneskoRivi + 2 < TASO) { // Prevent moving below the last row
       moneskoRivi++;
       highlightCurrentBox();
+      if (TASO > 4) näytäViereiset();
          
     }
     return;
@@ -406,6 +410,7 @@ document.addEventListener("keyup", (e) => {
     if (moneskoRivi > 0) { // Prevent moving above the first row
       moneskoRivi--;
       highlightCurrentBox();
+      if (TASO > 4) näytäViereiset();
     }
     return;
   }
