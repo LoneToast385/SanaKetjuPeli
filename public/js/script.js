@@ -56,7 +56,7 @@ async function taso_vaihtoehdot() {
         let taso_vaihtoehto = document.createElement("div");
         taso_vaihtoehto.className = "taso-vaihtoehto";
         
-        if (TASO == vaihtoehdot[i]) taso_vaihtoehto.classList.add("selected-box");
+        if (TASO == vaihtoehdot[p]) taso_vaihtoehto.classList.add("selected-box");
         taso_vaihtoehto.textContent = vaihtoehdot[p];
         taso_vaihtoehto.classList.add("letter-box");
 
