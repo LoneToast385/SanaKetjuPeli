@@ -251,8 +251,8 @@ input:checked + .slider:before {
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
-  background-color: #78ffa4; /* Example background color */
-  color: white; /* Text color */
+  background-color: #bbcec1;
+  color: white;
   border-color: #257bc5;
   border-radius: 5px;
   cursor: pointer;
