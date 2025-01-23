@@ -123,13 +123,13 @@ async function loadWords() {
 };
 
 function näytäViereiset() {
-  console.log("ok")
   let valinnat = 0
-  for (let i = 1; i < 5; i++) {
+  for (let i = 1; i < 4; i++) {
     
     let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
     if (row) {
       row.style.display = valinnat < 4 ? "flex" : "none";
+      console.log(valinnat < 4 ? "flex" : "none")
       valinnat++;
     }
     
