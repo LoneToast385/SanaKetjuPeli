@@ -7,7 +7,7 @@ let uusi_taso;
 let aloitussana;
 let lopetussana;
 
-let ratkaistu;
+let taso_muutettu = false;
 
 let HARDMODE = false;
 
@@ -444,8 +444,10 @@ span.onclick = function() {
 document.getElementById("tarkista-btn").addEventListener("click", checkWords);
 
 document.getElementById("aseta-uudet-asetukset-btn").addEventListener("click", () => {
-  console.log(uusi_taso, TASO, uusi_taso != TASO)
-  if (uusi_taso && uusi_taso != TASO) TASO = uusi_taso;
+  if (uusi_taso && uusi_taso != TASO) {
+    TASO = uusi_taso;
+    taso_muutettu = true;
+  };
   if (document.getElementById("vaikeampi-tila-switch").checked) {
     HARDMODE = true;
   } else {
@@ -460,7 +462,16 @@ document.getElementById("uusi-btn").addEventListener("click", async () => {
   let asetukset = document.getElementsByClassName("hidden-settings")[0]
   asetukset.classList.add("hide");
   await loadWords();
-  clearBoxes();
+  if (taso_muutettu) {
+    let board  = document.getElementById("game-board");
+    while (board.firstChild) {
+      board.removeChild(board.lastChild);
+    }
+    initBoard();
+    taso_muutettu = false;
+  } else {
+    clearBoxes();
+  }
 });
 
 async function init() {
