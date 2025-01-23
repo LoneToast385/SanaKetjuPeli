@@ -122,6 +122,16 @@ async function loadWords() {
     };
 };
 
+function näytä_viereiset() {
+  let valinnat = 0
+  for (let i = 0; i < 4; i++) {
+    let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
+    if (row && valinnat < 4) row.style.display = "flex" else if (row && valinnat > 3) row.style.display = "none";
+    let row = document.getElementsByClassName("letter-row")[moneskoRivi+i]
+    if (row && valinnat < 4) row.style.display = "flex" else if (row && valinnat > 3) row.style.display = "none";
+  }
+}
+  
 async function fetchWordFromApi(url) {
     try {
         const response = await fetch(url);
