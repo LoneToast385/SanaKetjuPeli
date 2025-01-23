@@ -128,14 +128,25 @@ function näytäViereiset() {
     
     let row = document.getElementsByClassName("letter-row")[moneskoRivi-i]
     if (row) {
-      row.style.display = valinnat < 4 ? "flex" : "none";
-      console.log(valinnat < 3 ? "flex" : "none")
+      if (valinnat < 3 && row.style.display != "flex") {
+        row.style.display = "flex";
+        row.style.animationName = "fade-in";
+      } else if (valinnat >= 3 && row.style.display != "none") {
+        row.style.animationName = "fade-out";
+        setTimeout(row.style.display = "none", 1000);
+      }
       valinnat++;
     }
     
     row = document.getElementsByClassName("letter-row")[moneskoRivi+i]
     if (row) {
-      row.style.display = valinnat < 3 ? "flex" : "none";
+      if (valinnat < 3 && row.style.display != "flex") {
+        row.style.display = "flex";
+        row.style.animationName = "fade-in";
+      } else if (valinnat >= 3 && row.style.display != "none") {
+        row.style.animationName = "fade-out";
+        setTimeout(row.style.display = "none", 1000);
+      }
       valinnat++;
     }
   }
