@@ -15,7 +15,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function korostaTasovalinta(x, y, sisältö) {
+function korostaTasovalinta(x, y) {
   const vaihtoehtoRivit = document.querySelectorAll(".vaihtoehto-rivi");
   for (let i = 0; i < vaihtoehtoRivit.length; i++) {
       let rivi = vaihtoehtoRivit[i];
@@ -28,8 +28,7 @@ function korostaTasovalinta(x, y, sisältö) {
   const valinnanRivi= document.getElementsByClassName("vaihtoehto-rivi")[y];
   const valinnanLaatikko = valinnanRivi.children[x];
   valinnanLaatikko.classList.add("selected-box");
-  console.log(sisältö)
-  if (valinnanLaatikko.textContent != TASO) uusi_taso = Number(sisältö);
+  if (valinnanLaatikko.textContent != TASO) uusi_taso = Number(valinnnanLaatikko.textContent);
 }
   
 async function taso_vaihtoehdot() {
@@ -65,8 +64,7 @@ async function taso_vaihtoehdot() {
         taso_vaihtoehto.addEventListener('click', () => {
           let y = i;
           let x = j;
-          let sisältö = vaihtoehdot[p];
-          korostaTasovalinta(x, y, sisältö);
+          korostaTasovalinta(x, y);
         });
         
         p++;
