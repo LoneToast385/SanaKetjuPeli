@@ -235,8 +235,6 @@ function deleteLetter() {
     let box = row.children[moneskoRuutu];
 
     if (box.textContent != "") {
-        row = document.getElementsByClassName("letter-row")[moneskoRivi];
-        box = row.children[moneskoRuutu];
         box.textContent = "";
         box.classList.remove("filled-box");
 
@@ -247,10 +245,11 @@ function deleteLetter() {
           moneskoRivi -= 1;
         }
       } else {
-        row = document.getElementsByClassName("letter-row")[moneskoRivi];
-        box = row.children[moneskoRuutu - 1];
-        box.textContent = "";
-        box.classList.remove("filled-box");
+        let box_before = row.children[moneskoRuutu - 1];
+        
+        box_before.textContent = "";
+        box_before.classList.remove("filled-box");
+        box_before.classList.remove("incorrect-box");
         moneskoRuutu -= 1;
       }
     } else if (moneskoRuutu > 0) {
