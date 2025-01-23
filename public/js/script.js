@@ -408,10 +408,12 @@ function checkWords() {
   if (areGuessesLegal()) {
     ratkaistu = true
     ilmoitusTausta.style.display = "block";
-    for(let i; i <= 100; i++)
-      ilmoitusTausta.style.opacity = i;
-    for(let m = 100; m > 0; m--)
-      ilmoitusTausta.style.opacity = m;
+    for(let i = 0; i <= 1; i += 0.1){
+      ilmoitusTausta.style.opacity = i.toString();
+    }
+    for(let m = 1; m > 0; m -= 0.1) {
+      ilmoitusTausta.style.opacity = m.toString();
+    }
     ilmoitusTausta.style.display = "none";
   }
 }
