@@ -14,6 +14,21 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function korostaTasovalinta(x, y) {
+  const vaihtoehtoRivit = document.querySelectorAll(".vaihtoehto-rivi");
+  for (let i = 0; i < vaihtoehtoRivit.length; i++) {
+      let rivi = vaihtoehtoRivit[i];
+      const rivin_vaihtoehdot = rivi.children;
+      for (let j = 0; j < rivin_vaihtoehdot.length; j++) {
+         rivin_vaihtoehdot[j].classList.remove("selected-box")
+      }
+  }
+  
+  const valinnanRivi= document.getElementsByClassName("vaihtoehto-rivi")[y];
+  const valinnanLaatikko = valinnanRivi.children[x];
+  currentBox.classList.add("selected-box");
+}
+
 async function taso_vaihtoehdot() {
     let vaihtoehdot = [];
     let suurin = 0;
@@ -30,14 +45,21 @@ async function taso_vaihtoehdot() {
     let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
     let rivi = document.createElement("div");
     rivi.className = "vaihtoehto-rivi";
-  
+    
     let rivin_pituus = 0;
+    let rivi_num = 0;
   
     for (let i = 0; i < vaihtoehdot.length; i++) {
       let taso_vaihtoehto = document.createElement("div");
       taso_vaihtoehto.className = "taso-vaihtoehto";
       taso_vaihtoehto.classList.add("letter-box");
+      if (TASO == vaihtoehdot[i]) taso_vaihtoehto.classList.add("selected-box");
       taso_vaihtoehto.textContent = vaihtoehdot[i];
+      taso_vaihtoehto.addEventListener('click', () => {
+          let y = rivi_num;
+          let x = i;
+          korostaTasovalinta(x, y);
+      });
       rivi.appendChild(taso_vaihtoehto);
       rivin_pituus++;
       if (rivin_pituus == 5) {
@@ -45,6 +67,7 @@ async function taso_vaihtoehdot() {
         rivi = document.createElement("div");
         rivi.className = "vaihtoehto-rivi";
         rivin_pituus = 0;
+        rivi_num++;
       }
     }
   rivi.className = "vaihtoehto-rivi";
@@ -110,10 +133,12 @@ async function fetchWordFromApi(url) {
             let sana = data[Number(TASO)][i]
             let differences = 0;
             for (let j = 0; j < 5; j++) {
-              console.log(differences, aloitussana, sana);
               if (aloitussana[j] !== sana[j]) differences++;
             }
-            if (differences == TASO) mahdolliset_lopetussanat.push(sana)
+            if (differences == TASO) {
+              console.log(differences, aloitussana, lopetussana)
+              mahdolliset_lopetussanat.push(sana);
+            }
           }
         } else {
           mahdolliset_lopetussanat = data[Number(TASO)];
