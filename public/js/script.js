@@ -2,6 +2,7 @@ let WORDS = new Set();
 let maksimi_etäisyydet = {};
 
 let TASO = 4;
+let uusi_taso;
 
 let aloitussana;
 let lopetussana;
@@ -14,7 +15,7 @@ function randomIntFromInterval(min, max) { // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function korostaTasovalinta(x, y) {
+function korostaTasovalinta(x, y, sisältö) {
   const vaihtoehtoRivit = document.querySelectorAll(".vaihtoehto-rivi");
   for (let i = 0; i < vaihtoehtoRivit.length; i++) {
       let rivi = vaihtoehtoRivit[i];
@@ -24,12 +25,12 @@ function korostaTasovalinta(x, y) {
       }
   }
 
-  console.log(x, y);
   const valinnanRivi= document.getElementsByClassName("vaihtoehto-rivi")[y];
   const valinnanLaatikko = valinnanRivi.children[x];
   valinnanLaatikko.classList.add("selected-box");
+  if (valinnanLaatikko.textContent != TASO) uusi_taso = sisältö;
 }
-
+  
 async function taso_vaihtoehdot() {
     let vaihtoehdot = [];
     let suurin = 0;
@@ -63,7 +64,8 @@ async function taso_vaihtoehdot() {
         taso_vaihtoehto.addEventListener('click', () => {
           let y = i;
           let x = j;
-          korostaTasovalinta(x, y);
+          let sisältö = vaihtoehdot[p];
+          korostaTasovalinta(x, y, sisältö);
         });
         
         p++;
