@@ -410,9 +410,11 @@ function checkWords() {
     ilmoitusTausta.style.display = "block";
     for(let i = 0; i <= 1; i += 0.1){
       ilmoitusTausta.style.opacity = i.toString();
+      sleep(500);
     }
     for(let m = 1; m > 0; m -= 0.1) {
       ilmoitusTausta.style.opacity = m.toString();
+      sleep(500)
     }
     ilmoitusTausta.style.display = "none";
   }
@@ -454,5 +456,8 @@ async function init() {
     await taso_vaihtoehdot();
 }
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 init();
