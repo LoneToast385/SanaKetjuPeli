@@ -408,7 +408,10 @@ function checkWords() {
   if (areGuessesLegal()) {
     ratkaistu = true
     ilmoitusTausta.style.display = "block";
-    sleep(5)
+    for(let i; i <= 100; i++)
+      ilmoitusTausta.style.opacity == i;
+    for(let m = 100; m > 0; m--)
+      ilmoitusTausta.style.opacity == m;
     ilmoitusTausta.style.display = "none";
   }
 }
@@ -449,8 +452,5 @@ async function init() {
     await taso_vaihtoehdot();
 }
 
-function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
 
 init();
