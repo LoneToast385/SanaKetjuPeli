@@ -371,4 +371,29 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
+@keyframes: fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
+@keyframes: fade-out {
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 1;
+  }
+}
+
+@keyframes: slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
