@@ -44,36 +44,30 @@ async function taso_vaihtoehdot() {
       vaihtoehdot.push(j);
     }
     let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
-    let rivi = document.createElement("div");
-    rivi.className = "vaihtoehto-rivi";
-    
-    let rivin_pituus = 0;
-    let rivi_num = 0;
-    let nykyinen_laatikko = 0;
+    let rivejä = 5;
+    let laatikoita = 5;
   
-    for (let i = 0; i < vaihtoehdot.length; i++) {
-      let taso_vaihtoehto = document.createElement("div");
-      taso_vaihtoehto.className = "taso-vaihtoehto";
-      taso_vaihtoehto.classList.add("letter-box");
-      if (TASO == vaihtoehdot[i]) taso_vaihtoehto.classList.add("selected-box");
-      taso_vaihtoehto.textContent = vaihtoehdot[i];
-      taso_vaihtoehto.addEventListener('click', () => {
-          let y = rivi_num;
-          let x = rivin_pituus;
+    for (let i = 0; i < rivejä, i++) {
+      let rivi = document.createElement("div");
+      rivi.className = "vaihtoehto-rivi";
+
+      for (let j = 0; j < laatikoita; j++) {
+        let taso_vaihtoehto = document.createElement("div");
+        taso_vaihtoehto.className = "taso-vaihtoehto";
+        
+        if (TASO == vaihtoehdot[i]) taso_vaihtoehto.classList.add("selected-box");
+        taso_vaihtoehto.textContent = vaihtoehdot[i];
+        taso_vaihtoehto.classList.add("letter-box");
+
+        taso_vaihtoehto.addEventListener('click', () => {
+          let y = i;
+          let x = j;
           korostaTasovalinta(x, y);
-      });
-      rivi.appendChild(taso_vaihtoehto);
-      rivin_pituus++;
-      if (rivin_pituus == 5) {
-        vaihtoehtoalusta.appendChild(rivi);
-        rivi = document.createElement("div");
-        rivi.className = "vaihtoehto-rivi";
-        rivin_pituus = 0;
-        rivi_num++;
+        }
+        rivi.appendChild(taso_vaihtoehto);
       }
+      vaihtoehtoalusta.appendChild(rivi)
     }
-  rivi.className = "vaihtoehto-rivi";
-  vaihtoehtoalusta.appendChild(rivi)
 }
   
 async function sanat() {
