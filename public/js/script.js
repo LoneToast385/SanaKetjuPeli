@@ -133,7 +133,7 @@ function näytäViereiset() {
         row.style.animationName = "fade-in";
       } else if (valinnat >= 3 && row.style.display != "none") {
         row.style.animationName = "fade-out";
-        row.style.display = "none"
+        row.style.display = "none";
       }
       valinnat++;
     }
@@ -143,9 +143,10 @@ function näytäViereiset() {
       if (valinnat < 3 && row.style.display != "flex") {
         row.style.display = "flex";
         row.style.animationName = "fade-in";
+        row.style.animationPlayState = "running"
       } else if (valinnat >= 3 && row.style.display != "none") {
         row.style.animationName = "fade-out";
-        setTimeout(row.style.display = "none", 1000);
+        row.style.display = "none";
       }
       valinnat++;
     }
