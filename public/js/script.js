@@ -46,6 +46,7 @@ async function taso_vaihtoehdot() {
     let vaihtoehtoalusta = document.getElementById("taso-vaihtoehdot");
     let rivejä = 5;
     let laatikoita = 5;
+    let p = 0;
   
     for (let i = 0; i < rivejä; i++) {
       let rivi = document.createElement("div");
@@ -56,7 +57,7 @@ async function taso_vaihtoehdot() {
         taso_vaihtoehto.className = "taso-vaihtoehto";
         
         if (TASO == vaihtoehdot[i]) taso_vaihtoehto.classList.add("selected-box");
-        taso_vaihtoehto.textContent = vaihtoehdot[i];
+        taso_vaihtoehto.textContent = vaihtoehdot[p];
         taso_vaihtoehto.classList.add("letter-box");
 
         taso_vaihtoehto.addEventListener('click', () => {
@@ -65,6 +66,7 @@ async function taso_vaihtoehdot() {
           korostaTasovalinta(x, y);
         });
         
+        p++;
         rivi.appendChild(taso_vaihtoehto);
       }
       vaihtoehtoalusta.appendChild(rivi)
