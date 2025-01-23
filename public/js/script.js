@@ -234,19 +234,25 @@ function deleteLetter() {
     let row = document.getElementsByClassName("letter-row")[moneskoRivi];
     let box = row.children[moneskoRuutu];
 
-    if (box.textContent != "" || moneskoRuutu == 0) {
+    if (box.textContent != "") {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu];
         box.textContent = "";
         box.classList.remove("filled-box");
 
     } else if (box.textContent == "") {
+      if (moneskoRuutu == 0) {
+        if (moneskoRivi != 0) {
+          moneskoRuutu = 4;
+          moneskoRivi -= 1;
+        }
+      } else {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
         box.textContent = "";
         box.classList.remove("filled-box");
         moneskoRuutu -= 1;
-
+      }
     } else if (moneskoRuutu > 0) {
         row = document.getElementsByClassName("letter-row")[moneskoRivi];
         box = row.children[moneskoRuutu - 1];
