@@ -505,8 +505,6 @@ document.getElementById("aseta-uudet-asetukset-btn").addEventListener("click", (
 document.getElementById("puhdista-btn").addEventListener("click", clearBoxes);
 
 document.getElementById("uusi-btn").addEventListener("click", async () => {
-  let asetukset = document.getElementsByClassName("hidden-settings")[0]
-  asetukset.classList.add("hide");
   await loadWords();
   if (taso_muutettu) {
     let board  = document.getElementById("game-board");
