@@ -63,7 +63,8 @@ async function taso_vaihtoehdot() {
           let y = i;
           let x = j;
           korostaTasovalinta(x, y);
-        }
+        });
+        
         rivi.appendChild(taso_vaihtoehto);
       }
       vaihtoehtoalusta.appendChild(rivi)
