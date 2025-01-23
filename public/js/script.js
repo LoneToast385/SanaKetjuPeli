@@ -195,8 +195,8 @@ function initBoard() {
   for (let i = 0; i <= TASO; i++) {
     let row = document.createElement("div");
     row.className = i === 0 ? "starting-row" : i === TASO ? "destination-row" : "hidden-row";
-    if (TASO < 5) row.classList.add("letter-row");
-
+    row.classList.add("letter-row");
+    
     for (let j = 0; j < 5; j++) {
       let box = document.createElement("div");
       box.className = i === 0 || i === TASO ? "intebox" : "letter-box";
