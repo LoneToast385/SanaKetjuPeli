@@ -23,7 +23,8 @@ function korostaTasovalinta(x, y) {
          rivin_vaihtoehdot[j].classList.remove("selected-box")
       }
   }
-  
+
+  console.log(x, y);
   const valinnanRivi= document.getElementsByClassName("vaihtoehto-rivi")[y];
   const valinnanLaatikko = valinnanRivi.children[x];
   currentBox.classList.add("selected-box");
