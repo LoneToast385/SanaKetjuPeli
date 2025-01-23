@@ -408,6 +408,8 @@ function checkWords() {
   if (areGuessesLegal()) {
     ratkaistu = true
     ilmoitusTausta.style.display = "block";
+    sleep(5)
+    ilmoitusTausta.style.display = "none";
   }
 }
 
@@ -445,6 +447,10 @@ async function init() {
     initBoard();
     highlightCurrentBox();
     await taso_vaihtoehdot();
+}
+
+function sleep(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 init();
