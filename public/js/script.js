@@ -524,8 +524,8 @@ async function init() {
     await sanat();
     await loadWords();
     document.getElementsByClassName("settings-icon")[0].addEventListener("click", () => {
-      let asetukset = document.getElementsByClassName("hidden-settings")[0]
-      if asetukset.classList.contains("hide") {
+      let asetukset = document.getElementsByClassName("hidden-settings")[0];
+      if (asetukset.classList.contains("hide")) {
         asetukset.classList.remove("hide");
       } else {
         asetukset.classList.add("hide");
