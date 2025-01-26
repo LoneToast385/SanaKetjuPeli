@@ -516,13 +516,22 @@ document.getElementById("uusi-btn").addEventListener("click", async () => {
   } else {
     clearBoxes();
   }
-});
+});0
 
 async function init() {
     let asetukset = document.getElementsByClassName("hidden-settings")[0]
     asetukset.classList.add("hide");
     await sanat();
     await loadWords();
+    document.getElementsByClassName("settings-icon")[0].addEventListener("click", () => {
+      let asetukset = document.getElementsByClassName("hidden-settings")[0]
+      if asetukset.classList.contains("hide") {
+        asetukset.classList.remove("hide");
+      } else {
+        asetukset.classList.add("hide");
+      }
+      
+    });
     initBoard();
     highlightCurrentBox();
     await taso_vaihtoehdot();
