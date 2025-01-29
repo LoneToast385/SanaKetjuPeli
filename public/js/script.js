@@ -5,7 +5,7 @@ var sulje = document.getElementsByClassName("close")[0];
 
 ohjeIlmoitus.style.display = "block";
 
-document.onclick = function() {
+sulje.onclick = function() {
   ohjeIlmoitus.style.display = "none";
 }
 
