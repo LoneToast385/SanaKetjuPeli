@@ -1,3 +1,22 @@
+
+var ohjeIlmoitus = document.getElementById("ohjeIlmoitus");
+
+var span = document.getElementsByClassName("close")[0];
+
+ohjeIlmoitus.style.display = "block";
+
+span.onclick = function() {
+  ohjeIlmoitus.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == ohjeIlmoitus) {
+    ohjeIlmoitus.style.display = "none";
+  }
+}
+
+
+
 let WORDS = new Set();
 let maksimi_etäisyydet = {};
 
