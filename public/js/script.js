@@ -1,11 +1,11 @@
 
 var ohjeIlmoitus = document.getElementById("ohjeIlmoitus");
 
-var span = document.getElementsByClassName("close")[0];
+var sulje = document.getElementsByClassName("close")[0];
 
 ohjeIlmoitus.style.display = "block";
 
-span.onclick = function() {
+sulje.onclick = function() {
   ohjeIlmoitus.style.display = "none";
 }
 
