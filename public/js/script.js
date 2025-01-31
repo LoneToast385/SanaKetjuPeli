@@ -346,8 +346,8 @@ function insertLetter(pressedKey) {
     checkWords();
 }
 
+// Tarkistaa käyttäjän syötteen ja paljastaa käyttäjälle missä kohtaa meni pieleen eli ei noudatettu pelin sääntöjä.
 function areGuessesLegal() {
-  // Tarkistaa käyttäjän syötteen ja paljastaa käyttäjälle missä kohtaa meni pieleen eli ei noudatettu pelin sääntöjä.
   näytäKokoLauta();
   
   let rows = document.getElementsByClassName("letter-row");
