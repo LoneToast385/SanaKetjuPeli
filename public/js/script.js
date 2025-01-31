@@ -15,20 +15,20 @@ window.onclick = function(event) {
   }
 }
 
-
-
 let WORDS = new Set();
 let maksimi_etäisyydet = {};
 
+let moneskoRivi = 0;
+let moneskoRuutu = 0;
+
 let TASO = 4;
-let uusi_taso;
+let uusi_taso; // Käyttäjän tekemät muutokset asetuksissa muuttavat ensin vain tätä ja aseta napin painamisen jälkeen TASO = uusi_taso
 
 let aloitussana;
 let lopetussana;
 
 let taso_muutettu = false;
-
-let HARDMODE = false;
+let HARDMODE = false; // Jos epätosi ja TASO < 6, niin suodatetaan pois vaikeampia sanoja.
 
 function randomIntFromInterval(min, max) { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -51,6 +51,8 @@ function korostaTasovalinta(x, y) {
 }
   
 async function taso_vaihtoehdot() {
+    // Luodaan käyttäjälle näkyvät tasovaihtoehdot asetuksiin.
+  
     let vaihtoehdot = [];
     let suurin = 0;
     
@@ -107,10 +109,11 @@ async function sanat() {
 };
 
 async function loadWords() {
-  if (TASO > 5) HARDMODE = true;
+  if (TASO > 5) HARDMODE = true; // Suodatusmenetelmä ei toimi, kun TASO > 5
     try {
         let käytettävät_sanat = [];
           Object.keys(maksimi_etäisyydet).map((key, index) => {
+            // Jos sanan maksimietäisyys on pienempi kuin taso niin sillä ei voida muodostaa tasoa vastaavaa sanaketjua 
             if (key >= TASO) {
               for (let i = 0; i < maksimi_etäisyydet[key].length; i++) {
                 käytettävät_sanat.push(maksimi_etäisyydet[key][i]);
@@ -201,12 +204,12 @@ async function fetchWordFromApi(url) {
 }
 
 
-let moneskoRivi = 0;
-let moneskoRuutu = 0;
 
-const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`;
+const apiUrl = `/api/sanat?filtteri=läheisetsanat&&aloitussana=${aloitussana}&&väli=${TASO}`; // Näin löydetään mahdolliset lopetussanat.
 
 function clearBoxes() {
+  // Päivittää aloitus- ja lopetussanan käyttäjän näkyviin puhdistuksen lisäksi.
+  
   let starting_row = document.getElementsByClassName("starting-row")[0];
   for (let s = 0; s < 5; s++) {
       let boksi = starting_row.children[s];
@@ -278,6 +281,7 @@ function highlightCurrentBox() {
 }
 
 function näytäKokoLauta() {
+  // Kun TASO > 5 niin osa laudasta piilotetaan, jotta pelin näppäimistöä käyttäessä pystyy näkemään mitä kirjoittaa.
   for (let i = 0; i < TASO - 1; i++) {
     let row = document.getElementsByClassName("letter-row")[i]
     row.style.display = "flex";
@@ -343,6 +347,7 @@ function insertLetter(pressedKey) {
 }
 
 function areGuessesLegal() {
+  // Tarkistaa käyttäjän syötteen ja paljastaa käyttäjälle missä kohtaa meni pieleen eli ei noudatettu pelin sääntöjä.
   näytäKokoLauta();
   
   let rows = document.getElementsByClassName("letter-row");
@@ -352,8 +357,9 @@ function areGuessesLegal() {
   guesses.push(aloitussana);
 
   let virhe_löydetty = false;
-  let ensimmäinen_virherivi = 0;
-  
+  let ensimmäinen_virherivi = 0; // Kun virhe löytyy niin kaikki sen jälkeiset rivit ovat virheellisiä.
+
+  // Tarkistetaan, että syötteet löytyvät sanalistasta.
   for (let i = 0; i < TASO - 1; i++) {
     let row = rows[i];
     let word = Array.from(row.children).map(box => box.textContent.trim()).join("");
@@ -370,6 +376,7 @@ function areGuessesLegal() {
 
   guesses.push(lopetussana);
 
+  // Tarkistetaan, että ainoastaan yhtä kirjainta on muutettu.
   for (let i = 0; i < guesses.length - 1; i++) {
     let differences = 0;
     if (virhe_löydetty && i > ensimmäinen_virherivi && virheet[i]) {
@@ -379,7 +386,7 @@ function areGuessesLegal() {
     for (let j = 0; j < guesses[i].length; j++) {
       if (guesses[i][j] !== guesses[i + 1][j]) {
         differences++;
-        if (differences > 1) {
+        if (differences > 1 || differences < 1) {
           if (i == virheet.length) {
             virheet[i-1][j] = 1;
             virhe_löydetty = true;
@@ -395,7 +402,8 @@ function areGuessesLegal() {
   
   console.log(virheet);
   let row;
-  
+
+  // Merkataan käyttäjälle oikein menneet ja väärin menneet kohdat.
   for (let i = 0; i < virheet.length; i++) {
     row = document.getElementsByClassName("letter-row")[i];
     let box;
